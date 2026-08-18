@@ -215,9 +215,11 @@ const eyebrow = (s, t, color) => s.addText(t, {
     fontFace:"Arial", fontSize:20, color:SAGE3 });
   s.addText("설치도 로그인도 없습니다. 생년월일만 넣으면 됩니다.",
     { x:M+4.2, y:3.85, w:CW-4.2, h:0.5, margin:0, fontFace:F, fontSize:17, color:SAGE2 });
-  s.addText("심사위원 생일 → 결과 → 같은 이름 다른 곳 → 그 지역 → 전체 목록 → 시도 배치도",
-    { x:M, y:5.75, w:CW, h:0.5, margin:0, fontFace:F, fontSize:15, color:SAGE });
-  s.addNotes("개인 결과에서 오래 끌지 마세요. '같은 이름 다른 곳'과 전체 목록에서 멈춰야 문제가 전달됩니다. 인터넷이 끊기면 녹화본으로 넘어가세요.");
+  s.addText("심사위원 생일 → 결과 → 같은 이름 다른 곳 → 그 지역 → 전체 목록 → 시도 배치도 → 결과 카드 저장",
+    { x:M, y:5.7, w:CW, h:0.5, margin:0, fontFace:F, fontSize:14, color:SAGE });
+  s.addText("결과 카드는 이미지로 저장돼 그대로 공유됩니다. 카드에 주소가 박혀 있습니다.",
+    { x:M, y:6.15, w:CW, h:0.45, margin:0, fontFace:F, fontSize:13, color:SAGE2 });
+  s.addNotes("개인 결과에서 오래 끌지 마세요. '같은 이름 다른 곳'과 전체 목록에서 멈춰야 문제가 전달됩니다. 마지막에 결과 카드를 이미지로 저장하는 것까지 보여주면 확산 질문을 미리 막습니다. 인터넷이 끊기면 녹화본으로 넘어가세요.");
 }
 
 /* ══ 11. 설계 원칙 ════════════════════════════════════════ */
