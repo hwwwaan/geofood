@@ -23,7 +23,7 @@
 | `10-work/사이트/build-data.py` | 등록현황 → `items-national.json` |
 | `10-work/사이트/build.py` | 위 둘을 합쳐 `index.html` 을 다시 씁니다 |
 | `yeonggwang/` | **영광판.** 지우지 않고 남겨뒀습니다 |
-| `00-brief/` `10-work/` `20-assets/` `30-out/` `40-ref/` | 과제·작업·재료·제출본·참고 |
+| `00-brief/` `10-work/` `20-assets/` `30-out/` `40-ref/` `90-old/` | 과제·작업·재료·제출본·참고·옛 판 |
 
 ```bash
 python3 10-work/사이트/build.py     # 데이터·화면을 고친 뒤 다시 만들기

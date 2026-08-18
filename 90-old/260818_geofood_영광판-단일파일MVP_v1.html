@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>그날, 영광에서는</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root{
+    --ink:#383838; --sage:#7E8C8A; --sage-2:#9CACA9; --sage-3:#ABBDBA;
+    --line:#CED5D2; --tint:#F0F3F2; --bg:#FFFFFF; --emph:#000000;
+    --muted:#8D9694;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    background:var(--tint); color:var(--ink);
+    font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .num{font-family:Arial,Helvetica,sans-serif;font-variant-numeric:tabular-nums;}
+  .wrap{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh;
+        box-shadow:0 0 0 1px var(--line);}
+  .pad{padding:26px 22px;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--sage);outline-offset:2px;}
+  .screen{display:none;}
+  .screen.on{display:block;}
+
+  /* 공통 */
+  .eyebrow{font-size:10.5px;letter-spacing:.18em;color:var(--sage);font-weight:600;text-transform:uppercase;}
+  .rule{height:1px;background:var(--line);margin:16px 0;}
+  .cta{
+    width:100%;padding:15px;border-radius:10px;background:var(--sage);color:#fff;
+    font-size:15px;font-weight:600;letter-spacing:-.01em;
+  }
+  .cta:disabled{background:var(--line);color:#fff;cursor:not-allowed;}
+  .ghost{
+    width:100%;padding:13px;border-radius:10px;background:transparent;color:var(--sage);
+    font-size:14px;font-weight:600;border:1px solid var(--line);margin-top:9px;
+  }
+
+  /* 1 입력 */
+  .hero{padding:52px 22px 30px;}
+  .hero h1{font-size:27px;line-height:1.34;margin:12px 0 0;font-weight:700;letter-spacing:-.03em;}
+  .hero h1 em{font-style:normal;color:var(--sage);}
+  .hero p{font-size:14px;color:var(--muted);margin:14px 0 0;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--sage);margin-bottom:8px;letter-spacing:.02em;}
+  .dob{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:7px;}
+  select{
+    width:100%;padding:12px 9px;border:1px solid var(--line);border-radius:9px;
+    background:var(--bg);font-size:15px;color:var(--ink);appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M0 0h9L4.5 6z' fill='%237E8C8A'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 11px center;
+  }
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .axis{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  .axis button{
+    flex:1;padding:11px 0;background:var(--bg);color:var(--sage-2);
+    font-size:14px;font-weight:600;transition:background .12s,color .12s;
+  }
+  .axis button[aria-pressed="true"]{background:var(--sage);color:#fff;}
+  .opt{font-size:11.5px;color:var(--muted);font-weight:500;letter-spacing:0;}
+
+  /* 2 결과 */
+  .reveal{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;}
+  .reveal:nth-child(2){animation-delay:.08s;}
+  .reveal:nth-child(3){animation-delay:.16s;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;}}
+  .headline{font-size:20px;line-height:1.5;font-weight:700;letter-spacing:-.025em;margin:14px 0 0;}
+  .headline b{color:var(--emph);}
+  .card{background:var(--tint);border-radius:12px;padding:20px;margin-top:20px;}
+  .card .name{font-size:23px;font-weight:700;letter-spacing:-.03em;}
+  .card .tag{font-size:14px;color:var(--sage);margin-top:6px;}
+  .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
+  .chip{font-size:11px;padding:4px 9px;border-radius:99px;background:var(--bg);
+        color:var(--sage);border:1px solid var(--line);font-weight:600;}
+  .chip.warn{color:#8a7a4e;border-color:#e2dcc6;background:#fbf8ef;}
+  .block{margin-top:18px;}
+  .block h3{font-size:11px;letter-spacing:.12em;color:var(--sage);margin:0 0 6px;font-weight:700;}
+  .block p{margin:0;font-size:14.5px;}
+  .why{border-left:2px solid var(--sage-3);padding:2px 0 2px 13px;margin-top:22px;
+       font-size:14px;color:var(--muted);}
+
+  /* 미니 그리드 — 22칸 중 하나 */
+  .mini{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin-top:22px;}
+  .mini i{display:block;aspect-ratio:1;border-radius:2px;background:var(--line);}
+  .mini i.me{background:var(--sage);}
+  .mini-cap{font-size:11.5px;color:var(--muted);margin-top:9px;}
+
+  /* 3 전체 */
+  .anchor-bg{
+    position:relative;overflow:hidden;background:var(--sage);color:#fff;
+    padding:34px 22px 30px;
+  }
+  .anchor-bg .ghosttext{
+    position:absolute;right:-14px;bottom:-26px;font-size:96px;font-weight:800;
+    letter-spacing:-.06em;color:rgba(255,255,255,.13);line-height:1;pointer-events:none;
+  }
+  .anchor-bg h2{font-size:22px;margin:10px 0 0;font-weight:700;letter-spacing:-.03em;position:relative;}
+  .anchor-bg p{font-size:13.5px;margin:12px 0 0;opacity:.9;position:relative;line-height:1.7;}
+  .anchor-bg .eyebrow{color:rgba(255,255,255,.75);}
+
+  /* 월별 스트립 — 시그니처 */
+  .strip{padding:22px 0 4px;}
+  .strip h3{font-size:11px;letter-spacing:.12em;color:var(--sage);margin:0 22px 14px;font-weight:700;}
+  .months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;padding:0 22px;}
+  .mcol{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .mcol .lab{font-size:9.5px;color:var(--muted);margin-bottom:3px;}
+  .dot{width:100%;height:7px;border-radius:2px;background:var(--sage-3);}
+  .dot.a1{background:var(--sage);}
+  .dot.a2{background:var(--sage-2);}
+  .gulbi-band{margin:12px 22px 0;height:22px;border-radius:4px;background:var(--line);
+              display:flex;align-items:center;padding:0 10px;font-size:10.5px;color:var(--muted);font-weight:600;}
+  .strip-cap{font-size:12px;color:var(--muted);margin:12px 22px 0;line-height:1.6;}
+
+  /* 목록 */
+  .list{padding:4px 22px 0;}
+  .row{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+  .row:last-child{border-bottom:none;}
+  .rank{font-size:11px;color:var(--sage-2);width:20px;flex:none;padding-top:3px;font-weight:600;}
+  .row .body{flex:1;min-width:0;}
+  .row .rn{font-size:16px;font-weight:600;letter-spacing:-.02em;}
+  .row .rt{font-size:13px;color:var(--muted);margin-top:2px;}
+  .row .rm{font-size:10.5px;color:var(--sage-2);margin-top:5px;}
+  .aware{display:flex;gap:2px;flex:none;padding-top:6px;}
+  .aware s{display:block;width:4px;height:4px;border-radius:50%;background:var(--line);}
+  .aware s.f{background:var(--sage-2);}
+  .row.anchor{background:var(--tint);margin:0 -22px;padding:18px 22px;border-bottom:none;}
+  .row.anchor .rn{color:var(--emph);}
+
+  .closer{margin:26px 22px 0;padding:20px;background:var(--tint);border-radius:12px;}
+  .closer p{margin:0;font-size:14px;line-height:1.75;}
+  .closer p+p{margin-top:11px;}
+  .closer b{color:var(--emph);}
+  footer{padding:24px 22px 40px;font-size:11px;color:var(--sage-2);line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 1 입력 ============ -->
+<section id="s1" class="screen on">
+  <div class="hero">
+    <div class="eyebrow">Yeonggwang · 22 foods</div>
+    <h1>당신이 태어난 날,<br>영광에서는 무엇을<br><em>거두고 있었을까요</em></h1>
+    <p>굴비 말고 스물한 가지가 더 있습니다.</p>
+  </div>
+  <div class="pad" style="padding-top:0">
+    <div class="rule"></div>
+    <div class="field">
+      <label for="y">생년월일</label>
+      <div class="dob">
+        <select id="y" aria-label="연"></select>
+        <select id="m" aria-label="월"></select>
+        <select id="d" aria-label="일"></select>
+      </div>
+    </div>
+    <div class="field">
+      <label>MBTI <span class="opt">— 건너뛰어도 됩니다. 결과 품목은 바뀌지 않습니다</span></label>
+      <div class="axes" id="axes"></div>
+    </div>
+    <button class="cta" id="go">그날의 영광 보기</button>
+    <button class="ghost" id="skip">먼저 22가지 전부 보기</button>
+  </div>
+</section>
+
+<!-- ============ 2 결과 ============ -->
+<section id="s2" class="screen">
+  <div class="pad">
+    <div class="eyebrow reveal">Your day</div>
+    <p class="headline reveal" id="head"></p>
+    <div class="card reveal" id="card"></div>
+    <div id="blocks"></div>
+    <p class="why" id="why"></p>
+    <div class="mini" id="mini"></div>
+    <p class="mini-cap" id="minicap"></p>
+    <div style="margin-top:26px">
+      <button class="cta" id="toAll">영광에는 몇 개나 더 있을까요</button>
+      <button class="ghost" id="again">다른 날짜로</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 전체 ============ -->
+<section id="s3" class="screen">
+  <div class="anchor-bg">
+    <div class="ghosttext">굴비</div>
+    <div class="eyebrow">The other twenty-one</div>
+    <h2>영광의 먹거리 스물두 가지</h2>
+    <p>덜 알려진 것부터 놓았습니다.<br>가장 아래 한 칸이 우리가 아는 하나입니다.</p>
+  </div>
+
+  <div class="strip">
+    <h3>언제 나는가</h3>
+    <div class="months" id="months"></div>
+    <div class="gulbi-band">굴비 — 연중</div>
+    <p class="strip-cap">짧게 반짝이는 것들이 스물한 가지, 1년 내내 깔려 있는 것이 하나입니다.</p>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="closer">
+    <p>영광에는 지리적 표시로 등록된 먹거리가 여섯 가지 있습니다.<br>
+       찰쌀, 보리쌀, 한우, 고추, 고춧가루, 모싯잎송편.</p>
+    <p><b>굴비는 그 목록에 없습니다.</b></p>
+  </div>
+
+  <footer>
+    임팩트베이스캠프 · 해시태그 L · 프로토타입<br>
+    품목 22종 · 수확기 일부 미확인(표시됨) · 2026.08
+    <div style="margin-top:14px"><button class="ghost" id="back" style="margin:0">처음으로</button></div>
+  </footer>
+</section>
+
+</div>
+
+<script>
+/* ================= 데이터 ================= */
+const ITEMS=[
+{id:"gulbi",name:"영광굴비",months:[3,4,5],always:true,aware:5,anchor:true,tag:"칠산 앞바다 참조기를 법성포 해풍에 말린 것",why:"영광에서 유일하게 전국이 아는 이름. 그런데 지리적 표시에는 등록돼 있지 않다.",note:"1126년 이자겸이 법성포에서 맛본 뒤 임금에게 진상하며 붙인 이름이라 전한다.",v:false},
+{id:"borigulbi",name:"보리굴비",months:[5,6,7,8],always:true,aware:4,anchor:false,tag:"굴비를 생보리 속에 넣어 숙성시킨 것",why:"굴비의 파생으로만 인식되어 별개 품목으로 세어지지 않는다.",note:"보리 속에 묻어 두면 기름이 배어나오지 않고 비린내가 잡힌다. 영광이 보리 산지라 가능한 조합이다.",v:false},
+{id:"songpyeon",name:"영광모싯잎송편",months:[5,6,7,8,9],always:true,aware:3,anchor:false,tag:"지리적표시 104호. 생산업체 130개소, 연 매출 300억",why:"타 지역에서도 모싯잎떡을 만들면서 '영광 것'이라는 표식이 흐려졌다.",note:"일반 송편보다 2~3배 크다. 고된 농사일 뒤 이웃과 노고를 나누려 크게 빚었다고 전한다.",v:true},
+{id:"chalbori",name:"찰보리쌀",months:[6],always:true,aware:2,anchor:false,tag:"국내 유일 보리산업 특구에서 나는 찰보리",why:"보리는 '옛날에 먹던 것'으로 취급되어 특산품으로 잘 세어지지 않는다.",note:"노란보리·검정보리·청보리를 함께 낸다. 영광에서 도정까지 마쳐 포장한다.",v:false},
+{id:"saessakbori",name:"새싹보리분말",months:[3,4,5],always:true,aware:1,anchor:false,tag:"보리를 싹 단계에서 거둬 말린 가루",why:"건강식품 카테고리로 팔려 산지가 드러나지 않는다.",note:"보리산업 특구 지정 이후 개발된 가공품 중 하나.",v:false},
+{id:"borisikhye",name:"보리식혜",months:[],always:true,aware:1,anchor:false,tag:"쌀 대신 보리로 삭힌 식혜",why:"지역 밖 유통 경로가 거의 없다.",note:"보리 가공품 다각화 과정에서 나온 품목.",v:false},
+{id:"boribbang",name:"찰보리빵",months:[],always:true,aware:2,anchor:false,tag:"밀가루를 전혀 쓰지 않고 찰보리가루로만 구운 빵",why:"경주 찰보리빵의 인지도에 가려진다.",note:"찰보리가루·계란·앙금으로 만든다.",v:false},
+{id:"salt",name:"천일염",months:[4,5,6,7,8,9],always:true,aware:3,anchor:false,tag:"굴비를 절이려고 만들다 그 자체가 산업이 된 소금",why:"신안 천일염의 그늘에 있다. 영광이 산지라는 인식이 약하다.",note:"굴비 염장 수요 때문에 생산이 성해졌다. 1년 이상 간수를 뺀 소금을 쓴다.",v:false},
+{id:"rice",name:"신동진쌀",months:[10],always:true,aware:1,anchor:false,tag:"낟알이 굵어 씹는 맛이 다른 품종",why:"쌀은 산지보다 품종·브랜드로 팔려 지역이 지워진다.",note:"모싯잎송편의 원료 쌀이기도 하다.",v:false},
+{id:"gochu",name:"태양초 고춧가루",months:[8,9],always:true,aware:2,anchor:false,tag:"지리적 표시에 등록된 영광 고추",why:"고추는 어디서나 나는 것으로 여겨져 산지가 기억되지 않는다.",note:"고추·고춧가루 모두 지리적 표시 등록 품목이다.",v:false},
+{id:"dongbu",name:"동부",months:[9,10],always:false,aware:1,anchor:false,tag:"모싯잎송편 속에 들어가는 콩",why:"완제품의 재료로만 소비되어 이름이 드러나지 않는다.",note:"오랫동안 미얀마산에 의존해 2021년 미얀마 쿠데타 때 송편 산업이 타격을 입었다. 영광군은 2026년 자급체계 구축사업을 시작했다.",v:true},
+{id:"saeujeot",name:"새우젓",months:[6],always:true,aware:2,anchor:false,tag:"칠산 바다에서 담근 젓",why:"강경·광천 새우젓의 인지도에 가려진다.",note:"6월에 담근 육젓을 상품으로 친다.",v:false},
+{id:"jangeo",name:"민물장어",months:[6,7,8],always:true,aware:1,anchor:false,tag:"무항생제 자포니카 종",why:"고창·풍천 장어의 인지도에 완전히 가려져 있다.",note:"산지직송으로만 소량 유통된다.",v:false},
+{id:"mango",name:"애플망고",months:[6,7,8],always:false,aware:1,anchor:false,tag:"기후변화로 영광에서 나기 시작한 아열대 과일",why:"아무도 영광에서 망고가 난다고 생각하지 않는다.",note:"영광군농업기술센터가 아열대 신소득 작목으로 재배 지원을 연차적으로 확대 중이다.",v:true},
+{id:"muscat",name:"샤인머스켓",months:[8,9,10],always:false,aware:1,anchor:false,tag:"영광의 신소득 작목",why:"경북 산지 이미지가 강해 전남 산지는 인지되지 않는다.",note:"아열대·신소득 작목 확대 대상 품목.",v:true},
+{id:"peach",name:"시설복숭아",months:[5,6,7],always:false,aware:1,anchor:false,tag:"노지보다 이르게 나오는 복숭아",why:"복숭아 산지로 영광을 떠올리는 사람이 없다.",note:"아열대·신소득 작목 확대 대상 품목.",v:true},
+{id:"asparagus",name:"아스파라거스",months:[4,5,6],always:false,aware:1,anchor:false,tag:"영광의 신소득 작목",why:"수입 채소라는 인식이 강해 국내 산지 자체가 안 알려졌다.",note:"아열대·신소득 작목 확대 대상 품목.",v:true},
+{id:"aronia",name:"아로니아",months:[8,9],always:false,aware:1,anchor:false,tag:"염산면에서 귀농인이 짓는 작물",why:"한때 유행 뒤 가격이 무너지며 품목 자체가 잊혔다.",note:"학원강사를 그만두고 염산면에서 아로니아 농사를 시작한 귀농 사례가 지역 신문에 실렸다.",v:false},
+{id:"sam",name:"새싹삼",months:[],always:true,aware:1,anchor:false,tag:"뿌리째 먹는 어린 인삼",why:"인삼 산지 이미지가 금산·풍기에 고정돼 있다.",note:"수경 재배로 연중 출하가 가능하다.",v:false},
+{id:"hanwoo",name:"영광한우",months:[],always:true,aware:2,anchor:false,tag:"지리적 표시에 등록된 영광 한우",why:"한우는 등급으로 팔려 산지가 지워진다.",note:"지리적 표시 등록 6종 중 하나.",v:false},
+{id:"jjokpa",name:"쪽파",months:[10,11,12],always:false,aware:1,anchor:false,tag:"전라도식 쪽파김치의 재료",why:"김치 완제품의 재료로만 소비된다.",note:"태양초 고춧가루·천일염과 함께 지역 안에서 완결되는 조합.",v:false},
+{id:"mositip",name:"모싯잎",months:[5,6,7,8,9],always:false,aware:2,anchor:false,tag:"송편이 되기 전의 잎",why:"가공품(송편)만 알려지고 원물은 알려지지 않았다.",note:"서해안 갯바람을 맞고 자란다. 영광은 보리와 함께 모싯잎으로도 산업 특구로 지정돼 있다.",v:true}
+];
+
+/* ================= 로직 (core.js와 동일) ================= */
+const SEASON={1:"한겨울",2:"겨울 끝",3:"이른 봄",4:"봄",5:"늦봄",6:"초여름",7:"한여름",8:"늦여름",9:"초가을",10:"가을",11:"늦가을",12:"초겨울"};
+function hashString(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193);}return h>>>0;}
+function seededRandom(seed){let t=seed>>>0;return function(){t+=0x6d2b79f5;let r=t;r=Math.imul(r^(r>>>15),r|1);r^=r+Math.imul(r^(r>>>7),r|61);return((r^(r>>>14))>>>0)/4294967296;};}
+function josa(w,a,b){const c=String(w).trim().slice(-1).charCodeAt(0);if(c<0xac00||c>0xd7a3)return b;return (c-0xac00)%28!==0?a:b;}
+function pick(arr,w,rng){const t=w.reduce((a,b)=>a+b,0);let r=rng()*t;for(let i=0;i<arr.length;i++){r-=w[i];if(r<=0)return arr[i];}return arr[arr.length-1];}
+function assign(bd){
+  const m=+bd.split("-")[1], seed=hashString(bd);
+  const pool=ITEMS.filter(i=>!i.anchor);
+  let c=pool.filter(i=>i.months.includes(m)), fb=false;
+  if(!c.length){c=pool.filter(i=>i.always);fb=true;}
+  if(!c.length){c=pool;fb=true;}
+  const w=c.map(i=>Math.max(1,6-i.aware));   // inverse 모드
+  return {item:pick(c,w,seededRandom(seed)),month:m,fallback:fb};
+}
+function headline(bd,it,fb){
+  const[y,m,d]=bd.split("-").map(Number), e=josa(it.name,"을","를");
+  return fb?`${y}년 ${m}월 ${d}일. 그 무렵 영광에서는 <b>${it.name}</b>${e} 내고 있었습니다.`
+           :`${y}년 ${m}월 ${d}일. ${SEASON[m]}의 영광에서는 <b>${it.name}</b>${e} 거두고 있었습니다.`;
+}
+function direction(mb){
+  if(!mb||mb.length!==4)return{social:"balanced",detail:"balanced",angle:"balanced",structure:"balanced"};
+  return{social:mb[0]==="E"?"share":"solo",detail:mb[1]==="S"?"recipe":"story",
+         angle:mb[2]==="T"?"data":"people",structure:mb[3]==="J"?"steps":"freeform"};
+}
+
+/* ================= 화면 ================= */
+const $=s=>document.querySelector(s);
+function show(id){document.querySelectorAll(".screen").forEach(e=>e.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0);}
+
+// 셀렉트 채우기
+(function(){
+  const y=$("#y"),m=$("#m"),d=$("#d");
+  for(let i=2012;i>=1945;i--)y.add(new Option(i+"년",i));
+  for(let i=1;i<=12;i++)m.add(new Option(i+"월",i));
+  for(let i=1;i<=31;i++)d.add(new Option(i+"일",i));
+  y.value=1999;m.value=6;d.value=12;
+})();
+
+// MBTI 4축
+const AX=[["E","I"],["S","N"],["T","F"],["J","P"]];
+let mbti=[null,null,null,null];
+(function(){
+  const box=$("#axes");
+  AX.forEach((pair,i)=>{
+    const w=document.createElement("div");w.className="axis";
+    pair.forEach(L=>{
+      const b=document.createElement("button");
+      b.textContent=L;b.setAttribute("aria-pressed","false");
+      b.onclick=()=>{
+        mbti[i]=mbti[i]===L?null:L;
+        [...w.children].forEach(c=>c.setAttribute("aria-pressed",String(c.textContent===mbti[i])));
+      };
+      w.appendChild(b);
+    });
+    box.appendChild(w);
+  });
+})();
+
+function currentMbti(){return mbti.every(Boolean)?mbti.join(""):null;}
+
+$("#go").onclick=()=>{
+  const bd=`${$("#y").value}-${String($("#m").value).padStart(2,"0")}-${String($("#d").value).padStart(2,"0")}`;
+  render(bd,currentMbti());show("#s2");
+};
+$("#skip").onclick=()=>{renderAll();show("#s3");};
+$("#toAll").onclick=()=>{renderAll();show("#s3");};
+$("#again").onclick=()=>show("#s1");
+$("#back").onclick=()=>show("#s1");
+
+function render(bd,mb){
+  const{item,fallback}=assign(bd), dir=direction(mb);
+  $("#head").innerHTML=headline(bd,item,fallback);
+  $("#card").innerHTML=`
+    <div class="name">${item.name}</div>
+    <div class="tag">${item.tag}</div>
+    <div class="meta">
+      ${item.months.length?`<span class="chip">${item.months.join("·")}월</span>`:`<span class="chip">연중</span>`}
+      <span class="chip">인지도 ${item.aware}/5</span>
+      ${item.v?"":`<span class="chip warn">수확기 확인 중</span>`}
+    </div>`;
+  // MBTI = 편집 방향만
+  const bs=[];
+  if(dir.detail!=="recipe")bs.push(["이야기",item.note]);
+  if(dir.angle==="people")bs.push(["만드는 사람","생산자 정보를 연결할 자리입니다."]);
+  if(dir.angle==="data")bs.push(["성분·규격","품목 데이터를 연결할 자리입니다."]);
+  if(dir.detail==="recipe")bs.push([dir.structure==="steps"?"단계별로 먹는 법":"대충 해도 되는 법","조리법을 연결할 자리입니다."]);
+  bs.push([dir.social==="share"?"여럿이 나눠 먹기":"혼자 한 끼로 먹기",item.note]);
+  const seen=new Set();
+  $("#blocks").innerHTML=bs.filter(([h,t])=>t&&!seen.has(h)&&seen.add(h))
+    .map(([h,t])=>`<div class="block"><h3>${h}</h3><p>${t}</p></div>`).join("");
+  $("#why").textContent=item.why;
+
+  const sorted=sortAll();
+  $("#mini").innerHTML=sorted.map(i=>`<i class="${i.id===item.id?"me":""}"></i>`).join("");
+  $("#minicap").textContent=`영광 먹거리 22가지 중 하나입니다. 나머지 21가지는 아직 비어 있습니다.`;
+}
+
+function sortAll(){
+  return [...ITEMS].sort((a,b)=>a.anchor!==b.anchor?(a.anchor?1:-1):a.aware-b.aware);
+}
+
+function renderAll(){
+  // 월별 스트립
+  const mm=$("#months");
+  mm.innerHTML=[...Array(12)].map((_,k)=>{
+    const m=k+1, hits=ITEMS.filter(i=>!i.anchor&&i.months.includes(m));
+    const dots=hits.map(i=>`<span class="dot ${i.aware===1?"a1":i.aware===2?"a2":""}"></span>`).join("");
+    return `<div class="mcol"><span class="lab num">${m}</span>${dots}</div>`;
+  }).join("");
+  // 목록
+  $("#list").innerHTML=sortAll().map((i,n)=>`
+    <div class="row ${i.anchor?"anchor":""}">
+      <span class="rank num">${i.anchor?"—":String(n+1).padStart(2,"0")}</span>
+      <div class="body">
+        <div class="rn">${i.name}</div>
+        <div class="rt">${i.anchor?"그리고 굴비. 우리가 아는 하나.":i.tag}</div>
+        <div class="rm">${i.months.length?i.months.join("·")+"월":"연중"}${i.v?"":" · 수확기 확인 중"}</div>
+      </div>
+      <div class="aware">${[1,2,3,4,5].map(k=>`<s class="${k<=i.aware?"f":""}"></s>`).join("")}</div>
+    </div>`).join("");
+}
+</script>
+</body>
+</html>
