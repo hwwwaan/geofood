@@ -47,15 +47,6 @@ select{width:100%;padding:13px 10px;border:1px solid var(--line);border-radius:9
   font:inherit;font-size:1rem;color:var(--ink);appearance:none;-webkit-appearance:none;min-height:50px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M0 0h9L4.5 6z' fill='%237E8C8A'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 11px center}
-.axis{display:flex;align-items:center;gap:10px}
-.axis+.axis{margin-top:10px}
-.axis-name{font-size:.8rem;color:var(--sage-2);width:62px;flex:none}
-.axis-opts{display:flex;gap:8px;flex:1}
-.opt{flex:1;padding:11px 6px;border:1px solid var(--line);border-radius:8px;background:var(--bg);
-  color:var(--sage);font:inherit;font-size:.9rem;cursor:pointer;-webkit-appearance:none}
-.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
-.readout{margin-top:14px;font-size:.85rem;color:var(--sage);min-height:1.7em}
-.readout .num{font-size:1.05rem;color:var(--ink);font-weight:700;letter-spacing:.06em}
 /* 결과 */
 .appear{animation:appear .5s cubic-bezier(.2,.7,.3,1) both}
 @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -2304,13 +2295,6 @@ function headline(bd, it, seasonal){
   return `${y}년 ${m}월 ${d}일. ${SEASON[m]}의 ${it.region}에서는 ${it.goods}${eul} 거두고 있었습니다.`;
 }
 
-/** MBTI는 품목을 고르지 않는다. 무엇을 먼저 보여줄지만 정한다. */
-function direction(mbti){
-  if(!mbti||mbti.length!==4) return {first:"peers", tone:"balanced"};
-  const m=mbti.toUpperCase();
-  return {first: m[1]==="S" ? "facts" : "peers", tone: m[2]==="T" ? "data" : "people"};
-}
-
 /* ── 파생 지표 ─────────────────────────────────────────── */
 const BY_GOODS = (()=>{const o={};ITEMS.forEach(i=>(o[i.goods]=o[i.goods]||[]).push(i));return o;})();
 const SIDO_ORDER = (()=>{const c={};ITEMS.forEach(i=>c[i.sido]=(c[i.sido]||0)+1);
@@ -2353,11 +2337,8 @@ function parseHash(){const raw=location.hash.replace(/^#\/?/,"");const[p,q]=raw.
   return {path:p||"",params:new URLSearchParams(q||"")};}
 const go=h=>{location.hash=h;};
 const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||"");
-const validMbti=s=>/^[EI][SN][TF][JP]$/.test(String(s||"").toUpperCase());
 
 /* [1] 입력 */
-const AXES=[["관계","E","밖으로","I","안으로"],["인식","S","감각","N","직관"],
-            ["판단","T","사고","F","감정"],["생활","J","계획","P","즉흥"]];
 
 function viewHome(){
   const thisYear=new Date().getFullYear();
@@ -2379,18 +2360,6 @@ function viewHome(){
         <select id="d" aria-label="일"></select>
       </div>
     </section>
-    <section>
-      <label class="field-label">MBTI <span class="badge">선택</span></label>
-      <p class="field-help">품목은 생년월일이 정합니다. MBTI는 무엇을 먼저 보여줄지만 정합니다.</p>
-      <div id="axes">
-        ${AXES.map((ax,i)=>`<div class="axis"><span class="axis-name">${ax[0]}</span>
-          <div class="axis-opts" role="group" aria-label="${ax[0]}">
-            <button type="button" class="opt" data-a="${i}" data-v="${ax[1]}" aria-pressed="false"><b>${ax[1]}</b> ${ax[2]}</button>
-            <button type="button" class="opt" data-a="${i}" data-v="${ax[3]}" aria-pressed="false"><b>${ax[3]}</b> ${ax[4]}</button>
-          </div></div>`).join("")}
-      </div>
-      <p class="readout" id="readout"></p>
-    </section>
     <div class="stack">
       <button class="btn" id="go">결과 보기</button>
       <a class="btn btn-ghost" href="#/map">먼저 전체 목록부터 보기</a>
@@ -2408,25 +2377,11 @@ function viewHome(){
   d.add(new Option("일",""));
   for(let i=1;i<=31;i++) d.add(new Option(i+"일",i));
 
-  const picked=[null,null,null,null];
-  const readout=app.querySelector("#readout"), btn=app.querySelector("#go");
-  const refresh=()=>{
-    const done=picked.every(Boolean);
-    readout.innerHTML = done ? `선택함 <span class="num">${picked.join("")}</span> · 다시 누르면 해제됩니다`
-      : picked.some(Boolean) ? "네 축을 모두 고르면 반영됩니다. 건너뛰어도 됩니다." : "";
-    btn.disabled = !(y.value&&m.value&&d.value);
-  };
-  app.querySelector("#axes").addEventListener("click",e=>{
-    const b=e.target.closest(".opt"); if(!b) return;
-    const i=+b.dataset.a;
-    picked[i] = picked[i]===b.dataset.v ? null : b.dataset.v;
-    app.querySelectorAll(`.opt[data-a="${i}"]`).forEach(x=>x.setAttribute("aria-pressed",String(picked[i]===x.dataset.v)));
-    refresh();
-  });
+  const btn=app.querySelector("#go");
+  const refresh=()=>{ btn.disabled = !(y.value&&m.value&&d.value); };
   [y,m,d].forEach(s=>s.addEventListener("change",refresh));
   btn.addEventListener("click",()=>{
-    const bd=`${y.value}-${String(m.value).padStart(2,"0")}-${String(d.value).padStart(2,"0")}`;
-    go(`/result?d=${bd}${picked.every(Boolean)?`&m=${picked.join("")}`:""}`);
+    go(`/result?d=${y.value}-${String(m.value).padStart(2,"0")}-${String(d.value).padStart(2,"0")}`);
   });
   refresh();
 }
@@ -2435,9 +2390,7 @@ function viewHome(){
 function viewResult(params){
   const d=params.get("d");
   if(!validDate(d)) return viewError("생년월일이 올바르지 않습니다.","다시 입력하기","#/");
-  const mbti=validMbti(params.get("m"))?params.get("m").toUpperCase():null;
   const {item,month,candidateCount,seasonal}=assign(d);
-  const dir=direction(mbti);
   const peers=BY_GOODS[item.goods];
   const sameSido=ITEMS.filter(i=>i.sido===item.sido);
 
@@ -2470,7 +2423,8 @@ function viewResult(params){
       <p class="item-name">${esc(item.name)} <span class="badge badge-gi">지리적표시</span></p>
       <p class="item-meta">${esc(item.sido)} ${esc(item.region)} · ${esc(item.category)} · ${esc(seasonLine(item))}</p>
     </section>
-    ${dir.first==="facts" ? factBlock+peerBlock : peerBlock+factBlock}
+    ${peerBlock}
+    ${factBlock}
     <hr class="divider">
     <div class="stack">
       <a class="btn" href="#/map">${ITEMS.length}가지를 전부 보기</a>
@@ -2478,8 +2432,7 @@ function viewResult(params){
       <a class="btn btn-ghost" href="#/">다른 날짜로 해보기</a>
     </div>
     <p class="foot-note">
-      ${mbti?`MBTI <span class="num">${esc(mbti)}</span> 는 순서에만 썼습니다. 같은 날짜면 MBTI가 달라도 품목은 같습니다.`
-            :"MBTI 없이 기본 순서로 보여드렸습니다."}
+      같은 날짜는 언제나 같은 결과가 나옵니다. 무작위가 아닙니다.
       <br>${month}월 후보 ${candidateCount}가지 가운데 하나입니다.
       수확기는 작물 일반 기준이고 등록 지역의 실제 수확기를 확인한 값이 아닙니다.
     </p>

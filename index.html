@@ -3,24 +3,2608 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>그날 영광에서는 — 영광 먹거리 지도</title>
-<meta name="description" content="생년월일을 넣으면 그 무렵 영광에서 나던 먹거리 하나를 배정합니다. 그리고 영광 먹거리 22종을 전부 펼칩니다.">
+<title>그날, 어디에서는 — 전국 지리적표시 지도</title>
+<meta name="description" content="생년월일을 넣으면 그 무렵 전국 어딘가에서 나던 먹거리 하나를 배정합니다. 지리적 표시로 등록된 134가지를 전부 펼칩니다.">
 <meta name="theme-color" content="#7E8C8A">
-<meta property="og:title" content="그날 영광에서는">
-<meta property="og:description" content="영광에는 굴비 말고 21가지가 더 있습니다.">
-<meta property="og:type" content="website">
-<link rel="stylesheet" href="./styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237E8C8A'/><circle cx='16' cy='16' r='6' fill='%23fff'/></svg>">
+<style>
+:root{
+  --ink:#383838;--sage:#7E8C8A;--sage-2:#9CACA9;--sage-3:#ABBDBA;
+  --line:#CED5D2;--tint:#F0F3F2;--bg:#FFFFFF;--emphasis:#000000;
+  --r:10px;--maxw:560px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+.num{font-family:Arial,Helvetica,sans-serif;font-feature-settings:"tnum"}
+main{max-width:var(--maxw);margin:0 auto;padding:28px 20px 72px}
+h1,h2,h3{line-height:1.45;margin:0;font-weight:700}
+h1{font-size:1.5rem;letter-spacing:-.01em}
+h2{font-size:1.15rem}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--sage);font-weight:600;margin-bottom:10px}
+.lead{color:var(--sage);font-size:.95rem;margin-top:12px}
+.stack>*+*{margin-top:14px}
+.stack-lg>*+*{margin-top:32px}
+.card{background:var(--tint);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.btn{display:block;width:100%;padding:15px 18px;border:1px solid var(--ink);border-radius:var(--r);
+  background:var(--ink);color:#fff;font:inherit;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;-webkit-appearance:none}
+.btn:disabled{background:var(--sage-2);border-color:var(--sage-2);cursor:default}
+.btn-ghost{background:transparent;color:var(--sage);border-color:var(--line);font-weight:500}
+.badge{display:inline-block;font-size:.7rem;line-height:1.6;padding:0 7px;border-radius:999px;
+  border:1px solid var(--sage-3);color:var(--sage);white-space:nowrap;vertical-align:2px}
+.badge-gi{background:var(--sage);border-color:var(--sage);color:#fff;font-weight:600}
+.foot-note{font-size:.8rem;color:var(--sage-2);line-height:1.65}
+.divider{height:1px;background:var(--line);border:0}
+/* 입력 */
+.field-label{font-weight:600;display:block;margin-bottom:8px}
+.field-help{font-size:.85rem;color:var(--sage);margin-bottom:10px}
+.dob{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px}
+select{width:100%;padding:13px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);
+  font:inherit;font-size:1rem;color:var(--ink);appearance:none;-webkit-appearance:none;min-height:50px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M0 0h9L4.5 6z' fill='%237E8C8A'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center}
+/* 결과 */
+.appear{animation:appear .5s cubic-bezier(.2,.7,.3,1) both}
+@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.appear{animation:none}}
+.headline{font-size:1.32rem;font-weight:700;line-height:1.55;letter-spacing:-.01em}
+.headline .num{font-size:1.32rem}
+.item-card{background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:22px}
+.item-name{font-size:1.6rem;font-weight:700;letter-spacing:-.02em}
+.item-meta{font-size:.85rem;color:var(--sage);margin-top:6px}
+.block-label{font-size:.75rem;letter-spacing:.06em;color:var(--sage-2);font-weight:600;margin-bottom:6px}
+.why{border-left:3px solid var(--sage-3);padding:2px 0 2px 14px}
+.peers{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.peer{font-size:.85rem;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.peer.self{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+/* 지도 */
+.toggle{display:flex;gap:4px;padding:4px;background:var(--tint);border:1px solid var(--line);border-radius:999px}
+.toggle button{flex:1;padding:9px 4px;border:0;border-radius:999px;background:transparent;color:var(--sage);
+  font:inherit;font-size:.85rem;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--bg);color:var(--ink);font-weight:600}
+.grp{margin-top:26px}
+.grp-head{display:flex;align-items:baseline;gap:9px;padding-bottom:7px;border-bottom:1px solid var(--ink)}
+.grp-title{font-weight:700;font-size:1.05rem}
+.grp-count{font-size:.8rem;color:var(--sage-2)}
+.grp-note{font-size:.82rem;color:var(--sage);margin-top:9px}
+.list{list-style:none;margin:0;padding:0}
+.list li{border-bottom:1px solid var(--line);padding:12px 0;display:flex;gap:12px;align-items:baseline}
+.rank{font-size:.8rem;color:var(--sage-2);width:26px;flex:none}
+.row-main{flex:1;min-width:0}
+.row-name{font-weight:600}
+.row-sub{font-size:.78rem;color:var(--sage-2);margin-top:4px;display:flex;gap:9px;flex-wrap:wrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1}
+.chip{font-size:.82rem;padding:3px 10px;background:var(--tint);border:1px solid var(--line);border-radius:999px}
+.month-row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.month-row:first-child{border-top:1px solid var(--line)}
+.month-no{width:42px;flex:none;font-weight:700;color:var(--sage)}
+.claim{background:var(--tint);border-radius:12px;padding:24px 22px;font-size:1.02rem;line-height:1.85}
+.claim strong{color:var(--emphasis)}
+.claim .kicker{display:block;font-weight:700;margin-top:16px;font-size:1.1rem}
+table.data{width:100%;border-collapse:collapse;font-size:.88rem}
+table.data th,table.data td{padding:9px 6px;text-align:right;border-bottom:1px solid var(--line)}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data thead th{color:var(--sage);font-weight:600;font-size:.8rem}
+.bar{height:6px;background:var(--sage-3);border-radius:3px;display:block}
+@media (min-width:700px){
+  body{font-size:17px}main{padding-top:56px}h1{font-size:1.75rem}
+  .headline,.headline .num{font-size:1.5rem}
+}
+</style>
 </head>
 <body>
-<main id="app" aria-live="polite">
-  <p class="lead">불러오는 중…</p>
-</main>
-<noscript>
-  <p style="max-width:560px;margin:0 auto;padding:20px">
-    이 페이지는 자바스크립트로 동작합니다. 브라우저에서 자바스크립트를 켜주세요.
-  </p>
-</noscript>
-<script type="module" src="./app.js"></script>
+<main id="app" aria-live="polite"></main>
+<script>
+/* 데이터 — 지리적표시 등록 원자료에서 생성. build-data.py 참조 */
+const DATA = {
+ "meta": {
+  "updated": "2026-08-18",
+  "counts": {
+   "농산물": 106,
+   "수산물": 28,
+   "합계": 134
+  },
+  "monthsNote": "수확기는 작물 일반 기준이다. 등록 지역의 실제 수확기를 확인한 값이 아니다. 수확기는 지역이 아니라 작물이 정하므로 이 정도는 성립하지만, 화면에 그대로 밝힌다.",
+  "awarenessNote": "인지도는 넣지 않았다. 134개를 추정으로 매기면 근거가 사라진다. 대신 등록연도만 쓴다. 제도 초기에 등록된 것일수록 이미 유명했던 품목이다.",
+  "gap": "임산물 지리적표시(산림청 소관)는 이번 판에 빠져 있다. 수산물은 국립수산물품질관리원 기준 현재 유효 등록이 24건이라 제1~17호 중 일부는 말소됐을 수 있다. 확인 필요.",
+  "sources": [
+   "농림축산식품부 「지리적표시 연도별 등록현황(2024.9 기준)」 106건",
+   "식품안전정보포털 수산물 지리적표시 제1~27호 / 국립수산물품질관리원 제28호",
+   "확인 기록: 40-ref/지리적표시 확인 기록.md (2026-08-18)"
+  ]
+ },
+ "items": [
+  {
+   "id": "a-보성녹차",
+   "name": "보성녹차",
+   "region": "보성",
+   "sido": "전남",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2002,
+   "no": null
+  },
+  {
+   "id": "a-하동녹차",
+   "name": "하동녹차",
+   "region": "하동",
+   "sido": "경남",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2003,
+   "no": null
+  },
+  {
+   "id": "a-고창복분자주",
+   "name": "고창복분자주",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "복분자주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2004,
+   "no": null
+  },
+  {
+   "id": "a-영양고춧가루",
+   "name": "영양고춧가루",
+   "region": "영양",
+   "sido": "경북",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-의성마늘",
+   "name": "의성마늘",
+   "region": "의성",
+   "sido": "경북",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-괴산고추",
+   "name": "괴산고추",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-순창전통고추장",
+   "name": "순창전통고추장",
+   "region": "순창",
+   "sido": "전북",
+   "goods": "전통고추장",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-괴산고춧가루",
+   "name": "괴산고춧가루",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-성주참외",
+   "name": "성주참외",
+   "region": "성주",
+   "sido": "경북",
+   "goods": "참외",
+   "category": "과일",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-해남겨울배추",
+   "name": "해남겨울배추",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "겨울배추",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-이천쌀",
+   "name": "이천쌀",
+   "region": "이천",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-철원쌀",
+   "name": "철원쌀",
+   "region": "철원",
+   "sido": "강원",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-고흥유자",
+   "name": "고흥유자",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "유자",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-홍천찰옥수수",
+   "name": "홍천찰옥수수",
+   "region": "홍천",
+   "sido": "강원",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-강화약쑥",
+   "name": "강화약쑥",
+   "region": "강화",
+   "sido": "인천",
+   "goods": "약쑥",
+   "category": "약용",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-횡성한우고기",
+   "name": "횡성한우고기",
+   "region": "횡성",
+   "sido": "강원",
+   "goods": "한우고기",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-제주돼지고기",
+   "name": "제주돼지고기",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "돼지고기",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려홍삼",
+   "name": "고려홍삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "홍삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려백삼",
+   "name": "고려백삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "백삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려태극삼",
+   "name": "고려태극삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "태극삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-충주사과",
+   "name": "충주사과",
+   "region": "충주",
+   "sido": "충북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-밀양얼음골사과",
+   "name": "밀양얼음골사과",
+   "region": "밀양얼음골",
+   "sido": "경남",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-한산모시",
+   "name": "한산모시",
+   "region": "한산",
+   "sido": "충남",
+   "goods": "모시",
+   "category": "섬유·기타",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-진도홍주",
+   "name": "진도홍주",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "홍주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-정선황기",
+   "name": "정선황기",
+   "region": "정선",
+   "sido": "강원",
+   "goods": "황기",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-남해마늘",
+   "name": "남해마늘",
+   "region": "남해",
+   "sido": "경남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-단양마늘",
+   "name": "단양마늘",
+   "region": "단양",
+   "sido": "충북",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-창녕양파",
+   "name": "창녕양파",
+   "region": "창녕",
+   "sido": "경남",
+   "goods": "양파",
+   "category": "채소",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-무안양파",
+   "name": "무안양파",
+   "region": "무안",
+   "sido": "전남",
+   "goods": "양파",
+   "category": "채소",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-여주쌀",
+   "name": "여주쌀",
+   "region": "여주",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-고창복분자",
+   "name": "고창복분자",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "복분자",
+   "category": "과일",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-광양매실",
+   "name": "광양매실",
+   "region": "광양",
+   "sido": "전남",
+   "goods": "매실",
+   "category": "과일",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-정선찰옥수수",
+   "name": "정선찰옥수수",
+   "region": "정선",
+   "sido": "강원",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-진부당귀",
+   "name": "진부당귀",
+   "region": "진부",
+   "sido": "강원",
+   "goods": "당귀",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-고려수삼",
+   "name": "고려수삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "수삼",
+   "category": "채소",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-청양고추",
+   "name": "청양고추",
+   "region": "청양",
+   "sido": "충남",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-해남고구마",
+   "name": "해남고구마",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "고구마",
+   "category": "채소",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영암무화과",
+   "name": "영암무화과",
+   "region": "영암",
+   "sido": "전남",
+   "goods": "무화과",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-함안수박",
+   "name": "함안수박",
+   "region": "함안",
+   "sido": "경남",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-고려인삼제품",
+   "name": "고려인삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "인삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-고려홍삼제품",
+   "name": "고려홍삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "홍삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-군산찰쌀보리쌀",
+   "name": "군산찰쌀보리쌀",
+   "region": "군산",
+   "sido": "전북",
+   "goods": "찰쌀보리쌀",
+   "category": "곡물",
+   "months": [
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-제주녹차",
+   "name": "제주녹차",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-홍천한우",
+   "name": "홍천한우",
+   "region": "홍천",
+   "sido": "강원",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영월고추",
+   "name": "영월고추",
+   "region": "영월",
+   "sido": "강원",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영천포도",
+   "name": "영천포도",
+   "region": "영천",
+   "sido": "경북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-무주사과",
+   "name": "무주사과",
+   "region": "무주",
+   "sido": "전북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-함평한우",
+   "name": "함평한우",
+   "region": "함평",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-삼척마늘",
+   "name": "삼척마늘",
+   "region": "삼척",
+   "sido": "강원",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-김천자두",
+   "name": "김천자두",
+   "region": "김천",
+   "sido": "경북",
+   "goods": "자두",
+   "category": "과일",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-영동포도",
+   "name": "영동포도",
+   "region": "영동",
+   "sido": "충북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-진도대파",
+   "name": "진도대파",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "대파",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-김천포도",
+   "name": "김천포도",
+   "region": "김천",
+   "sido": "경북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-원주치악산복숭아",
+   "name": "원주치악산복숭아",
+   "region": "원주치악산",
+   "sido": "강원",
+   "goods": "복숭아",
+   "category": "과일",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-영월고춧가루",
+   "name": "영월고춧가루",
+   "region": "영월",
+   "sido": "강원",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-예산사과",
+   "name": "예산사과",
+   "region": "예산",
+   "sido": "충남",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-영광찰쌀보리쌀",
+   "name": "영광찰쌀보리쌀",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "찰쌀보리쌀",
+   "category": "곡물",
+   "months": [
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-여수돌산갓",
+   "name": "여수돌산갓",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "돌산갓",
+   "category": "채소",
+   "months": [
+    10,
+    11,
+    12
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-여수돌산갓김치",
+   "name": "여수돌산갓김치",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "돌산갓김치",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-청도한재미나리",
+   "name": "청도한재미나리",
+   "region": "청도한재",
+   "sido": "경북",
+   "goods": "미나리",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-담양딸기",
+   "name": "담양딸기",
+   "region": "담양",
+   "sido": "전남",
+   "goods": "딸기",
+   "category": "과일",
+   "months": [
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-보성웅치올벼쌀",
+   "name": "보성웅치올벼쌀",
+   "region": "보성웅치",
+   "sido": "전남",
+   "goods": "올벼쌀",
+   "category": "곡물",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-사천풋마늘",
+   "name": "사천풋마늘",
+   "region": "사천",
+   "sido": "경남",
+   "goods": "풋마늘",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-고령수박",
+   "name": "고령수박",
+   "region": "고령",
+   "sido": "경북",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-의령망개떡",
+   "name": "의령망개떡",
+   "region": "의령",
+   "sido": "경남",
+   "goods": "망개떡",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-금산깻잎",
+   "name": "금산깻잎",
+   "region": "금산",
+   "sido": "충남",
+   "goods": "깻잎",
+   "category": "채소",
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-괴산찰옥수수",
+   "name": "괴산찰옥수수",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-인제콩",
+   "name": "인제콩",
+   "region": "인제",
+   "sido": "강원",
+   "goods": "콩",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-김포쌀",
+   "name": "김포쌀",
+   "region": "김포",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-영광한우",
+   "name": "영광한우",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-나주배",
+   "name": "나주배",
+   "region": "나주",
+   "sido": "전남",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-창녕마늘",
+   "name": "창녕마늘",
+   "region": "창녕",
+   "sido": "경남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-고흥한우",
+   "name": "고흥한우",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-진도검정쌀",
+   "name": "진도검정쌀",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "검정쌀",
+   "category": "곡물",
+   "months": [
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-거문도쑥",
+   "name": "거문도쑥",
+   "region": "거문도",
+   "sido": "전남",
+   "goods": "쑥",
+   "category": "채소",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-부산대저토마토",
+   "name": "부산대저토마토",
+   "region": "부산대저",
+   "sido": "부산",
+   "goods": "토마토",
+   "category": "채소",
+   "months": [
+    4,
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-안성배",
+   "name": "안성배",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-진영단감",
+   "name": "진영단감",
+   "region": "진영",
+   "sido": "경남",
+   "goods": "단감",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-서산팔봉산감자",
+   "name": "서산팔봉산감자",
+   "region": "서산팔봉산",
+   "sido": "충남",
+   "goods": "감자",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-영광고추",
+   "name": "영광고추",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-영광고춧가루",
+   "name": "영광고춧가루",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-천안배",
+   "name": "천안배",
+   "region": "천안",
+   "sido": "충남",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-고령감자",
+   "name": "고령감자",
+   "region": "고령",
+   "sido": "경북",
+   "goods": "감자",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-고흥석류",
+   "name": "고흥석류",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "석류",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-진도울금",
+   "name": "진도울금",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "울금",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-포항시금치",
+   "name": "포항시금치",
+   "region": "포항",
+   "sido": "경북",
+   "goods": "시금치",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-군산쌀",
+   "name": "군산쌀",
+   "region": "군산",
+   "sido": "전북",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-안성쌀",
+   "name": "안성쌀",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-고흥마늘",
+   "name": "고흥마늘",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-제주한라봉",
+   "name": "제주한라봉",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "한라봉",
+   "category": "과일",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-안성한우",
+   "name": "안성한우",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-고려흑삼",
+   "name": "고려흑삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "흑삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-고려흑삼제품",
+   "name": "고려흑삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "흑삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-영광모싯잎송편",
+   "name": "영광모싯잎송편",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "모싯잎송편",
+   "category": "가공식품",
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2017,
+   "no": null
+  },
+  {
+   "id": "a-기장쪽파",
+   "name": "기장쪽파",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "쪽파",
+   "category": "채소",
+   "months": [
+    10,
+    11,
+    12
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2018,
+   "no": null
+  },
+  {
+   "id": "a-태안달래",
+   "name": "태안달래",
+   "region": "태안",
+   "sido": "충남",
+   "goods": "달래",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2018,
+   "no": null
+  },
+  {
+   "id": "a-부안오디",
+   "name": "부안오디",
+   "region": "부안",
+   "sido": "전북",
+   "goods": "오디",
+   "category": "과일",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2019,
+   "no": null
+  },
+  {
+   "id": "a-곡성토란",
+   "name": "곡성토란",
+   "region": "곡성",
+   "sido": "전남",
+   "goods": "토란",
+   "category": "채소",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2019,
+   "no": null
+  },
+  {
+   "id": "a-양구시래기",
+   "name": "양구시래기",
+   "region": "양구",
+   "sido": "강원",
+   "goods": "시래기",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2020,
+   "no": null
+  },
+  {
+   "id": "a-서천한산소곡주",
+   "name": "서천한산소곡주",
+   "region": "서천한산",
+   "sido": "충남",
+   "goods": "소곡주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2021,
+   "no": null
+  },
+  {
+   "id": "a-보성키위",
+   "name": "보성키위",
+   "region": "보성",
+   "sido": "전남",
+   "goods": "키위",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2022,
+   "no": null
+  },
+  {
+   "id": "a-곡성멜론",
+   "name": "곡성멜론",
+   "region": "곡성",
+   "sido": "전남",
+   "goods": "멜론",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2022,
+   "no": null
+  },
+  {
+   "id": "a-청송사과",
+   "name": "청송사과",
+   "region": "청송",
+   "sido": "경북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2023,
+   "no": null
+  },
+  {
+   "id": "a-예천참기름",
+   "name": "예천참기름",
+   "region": "예천",
+   "sido": "경북",
+   "goods": "참기름",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "a-일산열무",
+   "name": "일산열무",
+   "region": "일산",
+   "sido": "경기",
+   "goods": "열무",
+   "category": "채소",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "a-고창수박",
+   "name": "고창수박",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "s-1",
+   "name": "보성벌교꼬막",
+   "region": "보성벌교",
+   "sido": "전남",
+   "goods": "꼬막",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 1
+  },
+  {
+   "id": "s-2",
+   "name": "완도전복",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 2
+  },
+  {
+   "id": "s-3",
+   "name": "완도미역",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 3
+  },
+  {
+   "id": "s-4",
+   "name": "완도다시마",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 4
+  },
+  {
+   "id": "s-5",
+   "name": "기장미역",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 5
+  },
+  {
+   "id": "s-6",
+   "name": "기장다시마",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 6
+  },
+  {
+   "id": "s-7",
+   "name": "장흥키조개",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "키조개",
+   "category": "수산",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 7
+  },
+  {
+   "id": "s-8",
+   "name": "완도김",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 8
+  },
+  {
+   "id": "s-9",
+   "name": "완도넙치",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "넙치",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 9
+  },
+  {
+   "id": "s-10",
+   "name": "장흥김",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 10
+  },
+  {
+   "id": "s-11",
+   "name": "장흥매생이",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "매생이",
+   "category": "수산",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 11
+  },
+  {
+   "id": "s-12",
+   "name": "여수굴",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "굴",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 12
+  },
+  {
+   "id": "s-13",
+   "name": "남원미꾸라지",
+   "region": "남원",
+   "sido": "전북",
+   "goods": "미꾸라지",
+   "category": "수산",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 13
+  },
+  {
+   "id": "s-14",
+   "name": "고흥미역",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 14
+  },
+  {
+   "id": "s-15",
+   "name": "고흥다시마",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 15
+  },
+  {
+   "id": "s-16",
+   "name": "진동미더덕",
+   "region": "진동",
+   "sido": "경남",
+   "goods": "미더덕",
+   "category": "수산",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 16
+  },
+  {
+   "id": "s-17",
+   "name": "신안김",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 17
+  },
+  {
+   "id": "s-18",
+   "name": "해남김",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 18
+  },
+  {
+   "id": "s-19",
+   "name": "해남전복",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 19
+  },
+  {
+   "id": "s-20",
+   "name": "여자만새고막",
+   "region": "여자만",
+   "sido": "전남",
+   "goods": "새고막",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 20
+  },
+  {
+   "id": "s-21",
+   "name": "고흥김",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 21
+  },
+  {
+   "id": "s-22",
+   "name": "고흥굴",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "굴",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 22
+  },
+  {
+   "id": "s-23",
+   "name": "평창송어",
+   "region": "평창",
+   "sido": "강원",
+   "goods": "송어",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 23
+  },
+  {
+   "id": "s-24",
+   "name": "진도전복",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 24
+  },
+  {
+   "id": "s-25",
+   "name": "순천만가리맛조개",
+   "region": "순천만",
+   "sido": "전남",
+   "goods": "가리맛조개",
+   "category": "수산",
+   "months": [
+    4,
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 25
+  },
+  {
+   "id": "s-26",
+   "name": "신안전복",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 26
+  },
+  {
+   "id": "s-27",
+   "name": "신안건우럭",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "건우럭",
+   "category": "수산가공",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 27
+  },
+  {
+   "id": "s-28",
+   "name": "무안돌김",
+   "region": "무안",
+   "sido": "전남",
+   "goods": "돌김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 28
+  }
+ ]
+};
+const ITEMS = DATA.items;
+
+/* ── 결정론 로직 (core.js와 같은 것) ───────────────────── */
+function hashString(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193);}return h>>>0;}
+function seededRandom(seed){let t=seed>>>0;return function(){t+=0x6d2b79f5;let r=t;r=Math.imul(r^(r>>>15),r|1);r^=r+Math.imul(r^(r>>>7),r|61);return((r^(r>>>14))>>>0)/4294967296;};}
+function josa(w,a,b){const c=String(w).trim().slice(-1).charCodeAt(0);if(c<0xac00||c>0xd7a3)return b;return (c-0xac00)%28!==0?a:b;}
+function weightedPick(arr,w,rng){const t=w.reduce((a,b)=>a+b,0);let r=rng()*t;for(let i=0;i<arr.length;i++){r-=w[i];if(r<=0)return arr[i];}return arr[arr.length-1];}
+
+/**
+ * 배정. 후보 = 그 달이 제철인 품목 + 연중 나는 품목.
+ * 영광판과 달라진 곳은 여기 하나다. 전국 134개에서는 어느 달이든 후보가 넉넉해
+ * 폴백이 걸리지 않고, 연중 품목도 노출에서 빠지지 않는다.
+ */
+function assign(birthdate){
+  const month = Number(birthdate.split("-")[1]);
+  const seed = hashString(birthdate);
+  const seasonal = ITEMS.filter(i=>i.months.includes(month));
+  const always = ITEMS.filter(i=>!i.months.length && i.alwaysAvailable);
+  const candidates = seasonal.concat(always);
+  const item = weightedPick(candidates, candidates.map(()=>1), seededRandom(seed));
+  return {item, month, candidateCount:candidates.length, seasonal: seasonal.includes(item)};
+}
+
+const SEASON={1:"한겨울",2:"겨울 끝",3:"이른 봄",4:"봄",5:"늦봄",6:"초여름",7:"한여름",8:"늦여름",9:"초가을",10:"가을",11:"늦가을",12:"초겨울"};
+
+function headline(bd, it, seasonal){
+  const [y,m,d]=bd.split("-").map(Number);
+  const eul=josa(it.goods,"을","를");
+  if(!seasonal) return `${y}년 ${m}월 ${d}일. 그 무렵 ${it.region}에서는 ${it.goods}${eul} 내고 있었습니다.`;
+  return `${y}년 ${m}월 ${d}일. ${SEASON[m]}의 ${it.region}에서는 ${it.goods}${eul} 거두고 있었습니다.`;
+}
+
+/* ── 파생 지표 ─────────────────────────────────────────── */
+const BY_GOODS = (()=>{const o={};ITEMS.forEach(i=>(o[i.goods]=o[i.goods]||[]).push(i));return o;})();
+const SIDO_ORDER = (()=>{const c={};ITEMS.forEach(i=>c[i.sido]=(c[i.sido]||0)+1);
+  return Object.keys(c).sort((a,b)=>c[b]-c[a]);})();
+
+const metrics = {
+  gini(v){v=[...v].sort((a,b)=>a-b);const n=v.length,s=v.reduce((a,b)=>a+b,0);
+    if(!n||!s)return 0;let acc=0;for(let i=0;i<n;i++)acc+=(i+1)*v[i];return (2*acc)/(n*s)-(n+1)/n;},
+  hhi(v){const s=v.reduce((a,b)=>a+b,0);return s?v.reduce((a,c)=>a+(c/s)**2,0):0;}
+};
+
+function simulate(n){
+  const counts=Object.fromEntries(ITEMS.map(i=>[i.id,0]));
+  const rng=seededRandom(20260818);
+  for(let k=0;k<n;k++){
+    const y=1950+Math.floor(rng()*60), m=1+Math.floor(rng()*12), d=1+Math.floor(rng()*28);
+    counts[assign(`${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`).item.id]++;
+  }
+  const v=Object.values(counts);
+  return {counts, gini:+metrics.gini(v).toFixed(4), hhi:+metrics.hhi(v).toFixed(4),
+          even:+(1/ITEMS.length).toFixed(4), shown:v.filter(c=>c>0).length};
+}
+
+/* ── 그리기 ────────────────────────────────────────────── */
+const app=document.getElementById("app");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function monthLabel(ms){
+  if(!ms||!ms.length) return null;
+  const s=[...ms].sort((a,b)=>a-b), runs=[];
+  let st=s[0],pv=s[0];
+  for(let i=1;i<=s.length;i++){ if(s[i]===pv+1){pv=s[i];continue;}
+    runs.push(st===pv?`${st}`:`${st}~${pv}`); st=pv=s[i]; }
+  return runs.join(", ")+"월";
+}
+const seasonLine=i=>monthLabel(i.months) ? monthLabel(i.months)+" 제철" : "연중";
+const regNote=i=> i.kind==="수산물" ? `수산물 지리적표시 제${i.no}호` : `농산물 지리적표시 ${i.year}년 등록`;
+
+function parseHash(){const raw=location.hash.replace(/^#\/?/,"");const[p,q]=raw.split("?");
+  return {path:p||"",params:new URLSearchParams(q||"")};}
+const go=h=>{location.hash=h;};
+const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||"");
+
+/* [1] 입력 */
+
+function viewHome(){
+  const thisYear=new Date().getFullYear();
+  app.innerHTML=`
+  <div class="stack-lg">
+    <header>
+      <p class="eyebrow">전국 지리적표시</p>
+      <h1>당신이 태어난 날,<br>어딘가에서는 무엇을 거두고 있었을까요</h1>
+      <p class="lead">
+        지리적 표시로 등록된 먹거리는 전국에 <span class="num">${ITEMS.length}</span>가지입니다.
+        그중 하나를 생년월일로 배정합니다. 점이 아니라 그날의 수확기입니다.
+      </p>
+    </header>
+    <section>
+      <label class="field-label" for="y">생년월일</label>
+      <div class="dob">
+        <select id="y" aria-label="연도"></select>
+        <select id="m" aria-label="월"></select>
+        <select id="d" aria-label="일"></select>
+      </div>
+    </section>
+    <div class="stack">
+      <button class="btn" id="go">결과 보기</button>
+      <a class="btn btn-ghost" href="#/map">먼저 전체 목록부터 보기</a>
+    </div>
+    <p class="foot-note">
+      생년월일은 저장하지 않습니다. 서버로 보내지도 않습니다. 계산은 이 페이지 안에서 끝납니다.
+    </p>
+  </div>`;
+
+  const y=app.querySelector("#y"), m=app.querySelector("#m"), d=app.querySelector("#d");
+  y.add(new Option("연도",""));
+  for(let i=thisYear;i>=1930;i--) y.add(new Option(i+"년",i));
+  m.add(new Option("월",""));
+  for(let i=1;i<=12;i++) m.add(new Option(i+"월",i));
+  d.add(new Option("일",""));
+  for(let i=1;i<=31;i++) d.add(new Option(i+"일",i));
+
+  const btn=app.querySelector("#go");
+  const refresh=()=>{ btn.disabled = !(y.value&&m.value&&d.value); };
+  [y,m,d].forEach(s=>s.addEventListener("change",refresh));
+  btn.addEventListener("click",()=>{
+    go(`/result?d=${y.value}-${String(m.value).padStart(2,"0")}-${String(d.value).padStart(2,"0")}`);
+  });
+  refresh();
+}
+
+/* [2] 결과 */
+function viewResult(params){
+  const d=params.get("d");
+  if(!validDate(d)) return viewError("생년월일이 올바르지 않습니다.","다시 입력하기","#/");
+  const {item,month,candidateCount,seasonal}=assign(d);
+  const peers=BY_GOODS[item.goods];
+  const sameSido=ITEMS.filter(i=>i.sido===item.sido);
+
+  const peerBlock = peers.length>1 ? `
+    <section>
+      <p class="block-label">같은 이름으로 등록된 다른 곳</p>
+      <p class="why">${esc(item.goods)}${josa(item.goods,"은","는")} ${esc(item.region)} 말고도
+        ${peers.length-1}곳이 더 등록돼 있습니다. 우리가 떠올리는 산지는 대개 하나입니다.</p>
+      <div class="peers">
+        ${peers.map(p=>`<span class="peer${p.id===item.id?" self":""}">${esc(p.region)}</span>`).join("")}
+      </div>
+    </section>` : `
+    <section>
+      <p class="block-label">이 이름은 한 곳뿐입니다</p>
+      <p class="why">${esc(item.goods)}${josa(item.goods,"으로","로")} 지리적 표시에 등록된 곳은
+        ${esc(item.region)} 하나입니다. ${ITEMS.length}개 중 이런 품목이 ${Object.values(BY_GOODS).filter(v=>v.length===1).length}개입니다.</p>
+    </section>`;
+
+  const factBlock = `
+    <section>
+      <p class="block-label">등록 정보</p>
+      <p>${esc(regNote(item))}. ${esc(item.sido)} ${esc(item.region)}.
+        ${esc(item.sido)}에서 등록된 것은 모두 ${sameSido.length}가지입니다.</p>
+    </section>`;
+
+  app.innerHTML=`
+  <div class="stack-lg appear">
+    <p class="headline">${esc(headline(d,item,seasonal))}</p>
+    <section class="item-card">
+      <p class="item-name">${esc(item.name)} <span class="badge badge-gi">지리적표시</span></p>
+      <p class="item-meta">${esc(item.sido)} ${esc(item.region)} · ${esc(item.category)} · ${esc(seasonLine(item))}</p>
+    </section>
+    ${peerBlock}
+    ${factBlock}
+    <hr class="divider">
+    <div class="stack">
+      <a class="btn" href="#/map">${ITEMS.length}가지를 전부 보기</a>
+      <button class="btn btn-ghost" id="share">결과 주소 복사</button>
+      <a class="btn btn-ghost" href="#/">다른 날짜로 해보기</a>
+    </div>
+    <p class="foot-note">
+      같은 날짜는 언제나 같은 결과가 나옵니다. 무작위가 아닙니다.
+      <br>${month}월 후보 ${candidateCount}가지 가운데 하나입니다.
+      수확기는 작물 일반 기준이고 등록 지역의 실제 수확기를 확인한 값이 아닙니다.
+    </p>
+  </div>`;
+
+  app.querySelector("#share").addEventListener("click",async e=>{
+    try{ if(navigator.share) await navigator.share({title:"그날, 어디에서는",url:location.href});
+         else { await navigator.clipboard.writeText(location.href); e.target.textContent="복사했습니다"; } }
+    catch{}
+  });
+}
+
+/* [3] 전체 지도 */
+let mapMode="goods";
+
+function viewMap(){
+  app.innerHTML=`
+  <div class="stack-lg">
+    <header>
+      <p class="eyebrow">전체 목록</p>
+      <h1>지리적 표시로 등록된 것<br><span class="num">${ITEMS.length}</span>가지</h1>
+      <p class="lead">농산물 ${DATA.meta.counts.농산물}가지, 수산물 ${DATA.meta.counts.수산물}가지.
+        아는 이름이 몇 개나 되는지 세어보세요.</p>
+    </header>
+    <div class="toggle" role="group" aria-label="보기 방식">
+      <button type="button" data-v="goods" aria-pressed="${mapMode==="goods"}">같은 이름끼리</button>
+      <button type="button" data-v="region" aria-pressed="${mapMode==="region"}">지역순</button>
+      <button type="button" data-v="month" aria-pressed="${mapMode==="month"}">달력순</button>
+    </div>
+    <section id="body"></section>
+    <section class="claim">
+      한 품목에 산지가 여럿인데, 우리가 떠올리는 이름은 대개 하나입니다.<br>
+      <strong>마늘은 여섯 곳, 사과는 다섯 곳, 김은 다섯 곳이 등록돼 있습니다.</strong>
+      <span class="kicker">그리고 영광굴비는 이 목록에 아예 없습니다.</span>
+    </section>
+    <p class="foot-note">
+      농림축산식품부 등록현황(2024년 9월, 106건)과 수산물 지리적표시 제1~28호를 합친 것입니다.
+      임산물 지리적표시(산림청 소관)는 아직 넣지 못했습니다.
+      수확기는 작물 일반 기준이며 등록 지역 원자료로 확인한 값이 아닙니다.
+    </p>
+    <div class="stack">
+      <a class="btn btn-ghost" href="#/impact">노출이 얼마나 고르게 퍼졌는지 보기</a>
+      <a class="btn btn-ghost" href="#/">내 날짜로 하나 받아보기</a>
+    </div>
+  </div>`;
+  const body=app.querySelector("#body");
+  const draw=()=>{body.innerHTML = mapMode==="goods"?goodsHTML():mapMode==="region"?regionHTML():monthHTML();};
+  app.querySelector(".toggle").addEventListener("click",e=>{
+    const b=e.target.closest("button[data-v]"); if(!b) return;
+    mapMode=b.dataset.v;
+    app.querySelectorAll(".toggle button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v===mapMode)));
+    draw();
+  });
+  draw();
+}
+
+const row=(i,n)=>`
+  <li><span class="rank num">${n}</span>
+    <div class="row-main">
+      <p class="row-name">${esc(i.name)}</p>
+      <p class="row-sub"><span>${esc(i.sido)} ${esc(i.region)}</span><span>${esc(seasonLine(i))}</span><span>${esc(regNote(i))}</span></p>
+    </div></li>`;
+
+function goodsHTML(){
+  const groups=Object.entries(BY_GOODS).sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0],"ko"));
+  const multi=groups.filter(([,v])=>v.length>1), single=groups.filter(([,v])=>v.length===1);
+  let n=0;
+  return `
+    <p class="lead" style="margin:0 0 6px">산지가 여럿인 품목부터 놓았습니다.</p>
+    ${multi.map(([g,v])=>`
+      <div class="grp">
+        <div class="grp-head"><span class="grp-title">${esc(g)}</span><span class="grp-count num">${v.length}곳</span></div>
+        <ul class="list">${v.map(i=>row(i,++n)).join("")}</ul>
+      </div>`).join("")}
+    <div class="grp">
+      <div class="grp-head"><span class="grp-title">한 곳뿐인 품목</span><span class="grp-count num">${single.length}가지</span></div>
+      <p class="grp-note">이 이름으로 등록된 곳이 전국에 하나뿐입니다.</p>
+      <div class="chips" style="margin-top:12px">${single.map(([,v])=>`<span class="chip">${esc(v[0].name)}</span>`).join("")}</div>
+    </div>`;
+}
+
+function regionHTML(){
+  let n=0;
+  return SIDO_ORDER.map(sido=>{
+    const v=ITEMS.filter(i=>i.sido===sido);
+    return `<div class="grp">
+      <div class="grp-head"><span class="grp-title">${esc(sido)}</span><span class="grp-count num">${v.length}가지</span></div>
+      <ul class="list">${v.map(i=>row(i,++n)).join("")}</ul>
+    </div>`;
+  }).join("");
+}
+
+function monthHTML(){
+  return `<div>${Array.from({length:12},(_,k)=>{
+    const m=k+1, v=ITEMS.filter(i=>i.months.includes(m));
+    return `<div class="month-row"><span class="month-no num">${m}월</span>
+      <div class="chips">${v.length?v.map(i=>`<span class="chip">${esc(i.name)}</span>`).join(""):`<span class="chip">-</span>`}</div></div>`;
+  }).join("")}</div>
+  <p class="foot-note" style="margin-top:14px">
+    연중 나는 품목 ${ITEMS.filter(i=>!i.months.length).length}가지는 여기에 안 보입니다. 배정에는 모든 달에 들어갑니다.
+  </p>`;
+}
+
+/* 노출 분산도 */
+function viewImpact(){
+  app.innerHTML=`<p class="lead">계산하는 중…</p>`;
+  setTimeout(()=>{
+    const N=10000, r=simulate(N);
+    const max=Math.max(...Object.values(r.counts));
+    const ranked=Object.entries(r.counts).map(([id,c])=>({i:ITEMS.find(x=>x.id===id),c})).sort((a,b)=>b.c-a.c);
+    app.innerHTML=`
+    <div class="stack-lg">
+      <header>
+        <p class="eyebrow">노출 분산도</p>
+        <h1>몇 명이 봤는지가 아니라,<br>얼마나 고르게 퍼졌는지</h1>
+        <p class="lead">무작위 생년월일 <span class="num">${N.toLocaleString()}</span>건을 이 페이지에서 지금 돌린 결과입니다.</p>
+      </header>
+      <section class="card">
+        <table class="data">
+          <tbody>
+            <tr><td>지니계수 (0에 가까울수록 고름)</td><td class="num">${r.gini}</td></tr>
+            <tr><td>HHI (완전 균등 ${r.even})</td><td class="num">${r.hhi}</td></tr>
+            <tr><td>노출된 품목</td><td class="num">${r.shown}/${ITEMS.length}</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>품목별 노출</h2>
+        <table class="data" style="margin-top:14px"><tbody>
+          ${ranked.map(x=>`<tr><td style="width:38%">${esc(x.i.name)}</td>
+            <td style="width:46%;text-align:left"><span class="bar" style="width:${Math.max(2,(x.c/max)*100)}%"></span></td>
+            <td class="num">${x.c}</td></tr>`).join("")}
+        </tbody></table>
+      </section>
+      <section class="card">
+        <h2>솔직하게 남는 것</h2>
+        <div class="stack" style="margin-top:12px">
+          <p><strong>${ITEMS.length}개가 전부 노출됩니다.</strong> 영광판은 22개 중 21개였고 그나마 한 품목이
+             석 달을 독식했습니다. 어느 달이든 후보가 15가지 이상이라 그런 일이 없어졌습니다.</p>
+          <p><strong>그런데 지니계수는 여전히 <span class="num">${r.gini}</span> 입니다.</strong>
+             영광판 0.4562와 별로 다르지 않습니다. 이유가 바뀌었을 뿐입니다.
+             연중 나는 품목 <span class="num">${ITEMS.filter(i=>!i.months.length).length}</span>가지가
+             열두 달 내내 후보로 들어가서, 한 달만 제철인 품목보다 열두 배 유리합니다.
+             가장 많이 뽑힌 것은 ${esc(ranked[0].i.name)} <span class="num">${ranked[0].c}</span>건,
+             가장 적은 것은 ${esc(ranked[ranked.length-1].i.name)} <span class="num">${ranked[ranked.length-1].c}</span>건입니다.</p>
+          <p>고치는 방법은 있습니다. 후보로 등장하는 달 수로 가중치를 나누면 됩니다.
+             다만 그러면 지표가 설계로 0에 수렴해 아무것도 재지 않게 됩니다. 어느 쪽이 맞는지 아직 정하지 않았습니다.</p>
+          <p>인지도를 데이터에 넣지 않았습니다. ${ITEMS.length}개를 추정으로 매기면 그 순간 근거가 사라집니다.
+             그래서 인지도 역가중 모드도 없앴습니다.</p>
+          <p><strong>현실 기준선은 여전히 없습니다.</strong> 실제로 어느 품목에 노출이 쏠려 있는지를 재지 않았으므로
+             「우리가 개선했다」는 말은 아직 못 합니다.</p>
+        </div>
+      </section>
+      <a class="btn btn-ghost" href="#/map">전체 목록으로</a>
+    </div>`;
+  },0);
+}
+
+function viewError(msg,cta,href){
+  app.innerHTML=`<div class="stack-lg"><h1>${esc(msg)}</h1><a class="btn" href="${esc(href)}">${esc(cta)}</a></div>`;
+}
+
+function route(){
+  const {path,params}=parseHash();
+  if(path==="result") viewResult(params);
+  else if(path==="map") viewMap();
+  else if(path==="impact") viewImpact();
+  else viewHome();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+route();
+</script>
 </body>
 </html>
