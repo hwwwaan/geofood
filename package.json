@@ -1,0 +1,6 @@
+{
+  "name": "yeonggwang-food",
+  "private": true,
+  "type": "module",
+  "description": "영광 먹거리 배정 서비스 (정적 사이트 — 빌드 없음). package.json은 sim.js를 ESM으로 돌리기 위한 것뿐입니다."
+}

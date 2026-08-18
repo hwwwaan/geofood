@@ -1,0 +1,300 @@
+/* 영광 먹거리 배정 서비스 — 디자인 토큰은 SPEC.md 4장 그대로 */
+
+:root {
+  --ink: #383838;
+  --sage: #7e8c8a;
+  --sage-2: #9caca9;
+  --sage-3: #abbdba;
+  --line: #ced5d2;
+  --tint: #f0f3f2;
+  --bg: #ffffff;
+  --emphasis: #000000;
+
+  --r: 10px;
+  --pad: 20px;
+  --maxw: 560px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.num { font-family: Arial, Helvetica, sans-serif; font-feature-settings: "tnum"; }
+
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 28px var(--pad) 72px;
+}
+
+h1, h2, h3 { line-height: 1.45; margin: 0; font-weight: 700; }
+h1 { font-size: 1.5rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: 1rem; }
+p { margin: 0; }
+
+a { color: inherit; }
+
+/* ── 공통 요소 ─────────────────────────────────────────── */
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.lead { color: var(--sage); font-size: 0.95rem; margin-top: 12px; }
+
+.stack > * + * { margin-top: 14px; }
+.stack-lg > * + * { margin-top: 32px; }
+
+.card {
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid var(--ink);
+  border-radius: var(--r);
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+.btn:disabled { background: var(--sage-2); border-color: var(--sage-2); cursor: default; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--sage);
+  border-color: var(--line);
+  font-weight: 500;
+}
+
+.btn-row { display: flex; gap: 10px; }
+.btn-row > * { flex: 1; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid var(--sage-3);
+  color: var(--sage);
+  white-space: nowrap;
+  vertical-align: 2px;
+}
+
+.foot-note {
+  font-size: 0.8rem;
+  color: var(--sage-2);
+  line-height: 1.65;
+}
+
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ── [1] 입력 ──────────────────────────────────────────── */
+
+.field-label { font-weight: 600; display: block; margin-bottom: 8px; }
+.field-help { font-size: 0.85rem; color: var(--sage); margin-bottom: 10px; }
+
+input[type="date"] {
+  width: 100%;
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 1.1rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 54px;
+}
+input[type="date"]:focus-visible { outline: 2px solid var(--sage); outline-offset: 1px; }
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+
+.axis { display: flex; align-items: center; gap: 10px; }
+.axis + .axis { margin-top: 10px; }
+.axis-name { font-size: 0.8rem; color: var(--sage-2); width: 62px; flex: none; }
+.axis-opts { display: flex; gap: 8px; flex: 1; }
+
+.opt {
+  flex: 1;
+  padding: 11px 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--sage);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+.opt[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  font-weight: 600;
+}
+.opt b { font-size: 1rem; }
+
+.mbti-readout {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--sage);
+  min-height: 1.7em;
+}
+.mbti-readout .num { font-size: 1.05rem; color: var(--ink); font-weight: 700; letter-spacing: 0.06em; }
+
+/* ── [2] 결과 ──────────────────────────────────────────── */
+
+.appear { animation: appear 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appear { animation: none; }
+}
+
+.headline {
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+.headline .num { font-size: 1.32rem; }
+
+.item-card { background: var(--tint); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+.item-name { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+.item-meta { font-size: 0.85rem; color: var(--sage); margin-top: 6px; }
+.item-tagline { margin-top: 12px; font-size: 1rem; }
+
+.block-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--sage-2);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.why {
+  border-left: 3px solid var(--sage-3);
+  padding: 2px 0 2px 14px;
+  color: var(--ink);
+}
+
+.sellers { display: flex; flex-wrap: wrap; gap: 8px; }
+.sellers a {
+  font-size: 0.9rem;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--sage);
+}
+
+/* ── [3] 전체 지도 ─────────────────────────────────────── */
+
+.toggle {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.toggle button {
+  flex: 1;
+  padding: 9px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sage);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--bg); color: var(--ink); font-weight: 600; }
+
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { border-bottom: 1px solid var(--line); padding: 15px 0; display: flex; gap: 14px; }
+.list li:first-child { border-top: 1px solid var(--line); }
+
+.rank { font-size: 0.85rem; color: var(--sage-2); width: 24px; flex: none; padding-top: 2px; }
+.row-main { flex: 1; min-width: 0; }
+.row-name { font-weight: 600; }
+.row-tagline { font-size: 0.88rem; color: var(--sage); margin-top: 3px; }
+.row-sub { font-size: 0.78rem; color: var(--sage-2); margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.dots { letter-spacing: 1px; color: var(--sage-3); }
+.dots b { color: var(--sage); font-weight: 400; }
+
+.anchor-slot { margin-top: 26px; }
+.anchor-slot .list li { border-color: var(--ink); }
+.anchor-caption { font-size: 0.9rem; color: var(--sage); margin-top: 12px; text-align: center; }
+
+.month-row { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.month-row:first-child { border-top: 1px solid var(--line); }
+.month-no { width: 40px; flex: none; font-weight: 700; color: var(--sage); padding-top: 1px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.chip {
+  font-size: 0.82rem;
+  padding: 3px 10px;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.chip-empty { color: var(--sage-2); font-size: 0.82rem; padding-top: 2px; }
+
+.claim {
+  background: var(--tint);
+  border-radius: 12px;
+  padding: 24px 22px;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+.claim strong { color: var(--emphasis); }
+.claim .kicker { display: block; font-weight: 700; margin-top: 16px; font-size: 1.1rem; }
+
+/* ── 임팩트 ────────────────────────────────────────────── */
+
+table.data { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+table.data th, table.data td { padding: 9px 6px; text-align: right; border-bottom: 1px solid var(--line); }
+table.data th:first-child, table.data td:first-child { text-align: left; }
+table.data thead th { color: var(--sage); font-weight: 600; font-size: 0.8rem; }
+
+.bar { height: 6px; background: var(--sage-3); border-radius: 3px; }
+
+/* ── 데스크톱 ──────────────────────────────────────────── */
+
+@media (min-width: 700px) {
+  body { font-size: 17px; }
+  main { padding-top: 56px; }
+  h1 { font-size: 1.75rem; }
+  .headline, .headline .num { font-size: 1.5rem; }
+}
