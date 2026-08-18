@@ -82,6 +82,14 @@ select{width:100%;padding:13px 10px;border:1px solid var(--line);border-radius:9
 .month-row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
 .month-row:first-child{border-top:1px solid var(--line)}
 .month-no{width:42px;flex:none;font-weight:700;color:var(--sage)}
+.sido-map{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.sido{border-radius:8px;padding:9px 4px;text-align:center;border:1px solid var(--line);
+  background:var(--bg);min-height:58px;display:flex;flex-direction:column;justify-content:center}
+.sido.empty{visibility:hidden}
+.sido.zero{border-style:dashed;color:var(--sage-2)}
+.sido b{display:block;font-size:.82rem;font-weight:600;line-height:1.3}
+.sido span{font-size:.78rem;opacity:.85}
+.sido.on{color:#fff;border-color:transparent}
 .claim{background:var(--tint);border-radius:12px;padding:24px 22px;font-size:1.02rem;line-height:1.85}
 .claim strong{color:var(--emphasis)}
 .claim .kicker{display:block;font-weight:700;margin-top:16px;font-size:1.1rem}
@@ -176,6 +184,76 @@ function parseHash(){const raw=location.hash.replace(/^#\/?/,"");const[p,q]=raw.
 const go=h=>{location.hash=h;};
 const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||"");
 
+/* ── 결과 카드 이미지 ─────────────────────────────────────
+ * 공유용. 외부 라이브러리 없이 캔버스에 직접 그린다.
+ * 폰트는 기기에 있는 것을 쓴다. 웹폰트를 받지 않는다.
+ */
+function drawCard({date, item, seasonal, peers}){
+  const W=1080, P=88, FOOT=150;
+  const F='Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif';
+
+  /* 두 번 그린다. 한 번은 높이를 재려고, 한 번은 실제로. */
+  const layout=(x)=>{
+    const draw=!!x;
+    const lines=(text,y,size,color,weight,lh)=>{
+      if(draw){ x.font=`${weight} ${size}px ${F}`; x.fillStyle=color; }
+      else { MEASURE.font=`${weight} ${size}px ${F}`; }
+      const ctx = draw ? x : MEASURE;
+      let line="";
+      for(const w of String(text).split(" ")){
+        const t=line?line+" "+w:w;
+        if(ctx.measureText(t).width > W-P*2 && line){ if(draw)x.fillText(line,P,y); y+=size*lh; line=w; }
+        else line=t;
+      }
+      if(line){ if(draw)x.fillText(line,P,y); y+=size*lh; }
+      return y;
+    };
+
+    let y=P+40;
+    y=lines("그날, 어디에서는", y, 26, "#7E8C8A", 600, 1.6) + 26;
+    y=lines(headline(date,item,seasonal), y, 44, "#383838", 700, 1.5) + 54;
+
+    if(draw){ x.strokeStyle="#CED5D2"; x.lineWidth=1; x.beginPath(); x.moveTo(P,y); x.lineTo(W-P,y); x.stroke(); }
+    y+=76;
+
+    y=lines(item.name, y, 82, "#000000", 700, 1.25) + 14;
+    y=lines(`${item.sido} ${item.region} · ${seasonLine(item)}`, y, 30, "#7E8C8A", 400, 1.6) + 16;
+    y=lines(regNote(item), y, 26, "#9CACA9", 400, 1.6);
+
+    if(peers.length>1){
+      y+=54;
+      const boxTop=y-42;
+      let inner=lines(`${item.goods}${josa(item.goods,"은","는")} ${peers.length}곳에 등록돼 있습니다`, y+16, 32, null, 700, 1.5);
+      inner=lines(peers.map(p=>p.region).join(" · "), inner+8, 27, null, 400, 1.5);
+      const boxH=inner-boxTop+28;
+      if(draw){
+        x.fillStyle="#F0F3F2";
+        x.beginPath(); x.roundRect(P,boxTop,W-P*2,boxH,16); x.fill();
+        lines(`${item.goods}${josa(item.goods,"은","는")} ${peers.length}곳에 등록돼 있습니다`, y+16, 32, "#383838", 700, 1.5);
+        lines(peers.map(p=>p.region).join(" · "), y+16+32*1.5+8, 27, "#7E8C8A", 400, 1.5);
+      }
+      y=boxTop+boxH;
+    }
+    return y;
+  };
+
+  const MEASURE=document.createElement("canvas").getContext("2d");
+  const H=Math.max(760, Math.round(layout(null)+FOOT+P));
+
+  const c=document.createElement("canvas"); c.width=W; c.height=H;
+  const x=c.getContext("2d");
+  x.fillStyle="#FFFFFF"; x.fillRect(0,0,W,H);
+  x.fillStyle="#7E8C8A"; x.fillRect(0,0,W,14);
+  layout(x);
+
+  x.font=`400 24px ${F}`; x.fillStyle="#9CACA9";
+  x.fillText(`지리적 표시로 등록된 먹거리 ${ITEMS.length}가지`, P, H-P-38);
+  x.font=`600 24px ${F}`; x.fillStyle="#7E8C8A";
+  x.fillText("hwwwaan.github.io/geofood", P, H-P);
+
+  return new Promise(res=>c.toBlob(res,"image/png"));
+}
+
 /* [1] 입력 */
 
 function viewHome(){
@@ -247,11 +325,28 @@ function viewResult(params){
         ${esc(item.region)} 하나입니다. ${ITEMS.length}개 중 이런 품목이 ${Object.values(BY_GOODS).filter(v=>v.length===1).length}개입니다.</p>
     </section>`;
 
+  const sameRegion = ITEMS.filter(i=>i.region===item.region);
+  const sidoPct = Math.round(sameSido.length/ITEMS.length*100);
+
   const factBlock = `
     <section>
       <p class="block-label">등록 정보</p>
-      <p>${esc(regNote(item))}. ${esc(item.sido)} ${esc(item.region)}.
-        ${esc(item.sido)}에서 등록된 것은 모두 ${sameSido.length}가지입니다.</p>
+      <p>${esc(regNote(item))}.</p>
+    </section>
+
+    <section>
+      <p class="block-label">${esc(item.region)}${josa(item.region,"이라는","라는")} 곳</p>
+      ${sameRegion.length>1 ? `
+        <p>${esc(item.region)}에서 지리적 표시에 등록된 것은 ${sameRegion.length}가지입니다.</p>
+        <div class="peers">
+          ${sameRegion.map(i=>`<span class="peer${i.id===item.id?" self":""}">${esc(i.name)}</span>`).join("")}
+        </div>`
+        : `<p>${esc(item.region)}에서 지리적 표시에 등록된 것은 ${esc(item.name)} 하나뿐입니다.</p>`}
+      <p class="foot-note" style="margin-top:12px">
+        ${esc(item.sido)} 전체로는 ${sameSido.length}가지.
+        전국 ${ITEMS.length}가지 가운데 ${sidoPct}%가 ${esc(item.sido)}에 있습니다.
+        ${item.sido==="전남" ? "등록은 지역에도 쏠려 있습니다." : ""}
+      </p>
     </section>`;
 
   app.innerHTML=`
@@ -266,7 +361,8 @@ function viewResult(params){
     <hr class="divider">
     <div class="stack">
       <a class="btn" href="#/map">${ITEMS.length}가지를 전부 보기</a>
-      <button class="btn btn-ghost" id="share">결과 주소 복사</button>
+      <button class="btn btn-ghost" id="saveimg">결과 카드 이미지로 저장</button>
+      <button class="btn btn-ghost" id="share">주소 복사해서 보내기</button>
       <a class="btn btn-ghost" href="#/">다른 날짜로 해보기</a>
     </div>
     <p class="foot-note">
@@ -276,10 +372,32 @@ function viewResult(params){
     </p>
   </div>`;
 
+  const shareText = `${headline(d,item,seasonal)} ${peers.length>1
+    ? `${item.goods}${josa(item.goods,"은","는")} ${peers.length}곳에 등록돼 있습니다.` : ""}`;
+
   app.querySelector("#share").addEventListener("click",async e=>{
-    try{ if(navigator.share) await navigator.share({title:"그날, 어디에서는",url:location.href});
-         else { await navigator.clipboard.writeText(location.href); e.target.textContent="복사했습니다"; } }
-    catch{}
+    try{
+      if(navigator.share) await navigator.share({title:"그날, 어디에서는", text:shareText, url:location.href});
+      else { await navigator.clipboard.writeText(`${shareText}\n${location.href}`); e.target.textContent="복사했습니다"; }
+    }catch{}
+  });
+
+  app.querySelector("#saveimg").addEventListener("click",async e=>{
+    const btn=e.currentTarget; btn.textContent="만드는 중…";
+    try{
+      const blob = await drawCard({date:d, item, seasonal, peers});
+      const file = new File([blob], `${item.name}.png`, {type:"image/png"});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        await navigator.share({files:[file], text:shareText});
+        btn.textContent="결과 카드 이미지로 저장";
+      }else{
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement("a");
+        a.href=url; a.download=`${item.name}.png`; a.click();
+        setTimeout(()=>URL.revokeObjectURL(url),1000);
+        btn.textContent="저장했습니다";
+      }
+    }catch{ btn.textContent="이미지를 만들지 못했습니다"; }
   });
 }
 
@@ -300,6 +418,18 @@ function viewMap(){
       <button type="button" data-v="region" aria-pressed="${mapMode==="region"}">지역순</button>
       <button type="button" data-v="month" aria-pressed="${mapMode==="month"}">달력순</button>
     </div>
+    <section>
+      <h2>어디에 몰려 있나</h2>
+      <p class="lead">시도별 등록 건수입니다. 실제 지형이 아니라 위치를 어림잡아 놓은 배치도입니다.</p>
+      <div class="sido-map" style="margin-top:16px">${sidoMapHTML()}</div>
+      <p class="foot-note" style="margin-top:14px">
+        <strong>전남 한 곳이 ${Math.round(ITEMS.filter(i=>i.sido==="전남").length/ITEMS.length*100)}%를 가져갑니다.</strong>
+        등록은 품목만이 아니라 지역에도 쏠려 있습니다.
+        광역시가 대부분 0인 것은 산지가 아니어서입니다.
+        지역이 없는 품목 ${ITEMS.filter(i=>i.sido==="전국").length}가지(고려인삼 계열)는 배치도에서 뺐습니다.
+      </p>
+    </section>
+
     <section id="body"></section>
     <section class="claim">
       한 품목에 산지가 여럿인데, 우리가 떠올리는 이름은 대개 하나입니다.<br>
@@ -325,6 +455,31 @@ function viewMap(){
     draw();
   });
   draw();
+}
+
+/* 시도 배치도. 실제 지형이 아니라 어림 위치다. 화면에도 그렇게 적는다. */
+const SIDO_GRID=[
+  ["","","","강원",""],
+  ["","인천","서울","경기",""],
+  ["","충남","세종","충북","경북"],
+  ["","","대전","","대구"],
+  ["","전북","","","울산"],
+  ["광주","전남","경남","부산",""],
+  ["제주","","","",""],
+];
+
+function sidoMapHTML(){
+  const c={}; ITEMS.forEach(i=>c[i.sido]=(c[i.sido]||0)+1);
+  const max=Math.max(...Object.entries(c).filter(([k])=>k!=="전국").map(([,v])=>v));
+  return SIDO_GRID.flat().map(name=>{
+    if(!name) return `<div class="sido empty"></div>`;
+    const n=c[name]||0;
+    if(!n) return `<div class="sido zero"><b>${name}</b><span class="num">0</span></div>`;
+    const t=n/max;
+    const bg=`rgba(126,140,138,${(0.18+t*0.82).toFixed(2)})`;
+    return `<div class="sido${t>0.5?" on":""}" style="background:${bg};border-color:${bg}">
+      <b>${name}</b><span class="num">${n}</span></div>`;
+  }).join("");
 }
 
 const row=(i,n)=>`
