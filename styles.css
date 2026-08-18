@@ -298,3 +298,11 @@ table.data thead th { color: var(--sage); font-weight: 600; font-size: 0.8rem; }
   h1 { font-size: 1.75rem; }
   .headline, .headline .num { font-size: 1.5rem; }
 }
+
+/* 지리적 표시 등록 품목 표식 — 굴비에 없다는 것이 목록에서 보여야 한다 */
+.badge-gi {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: #fff;
+  font-weight: 600;
+}

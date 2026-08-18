@@ -1,7 +1,7 @@
 {
   "meta": {
     "region": "전남 영광군",
-    "updated": "2026-08-17",
+    "updated": "2026-08-18",
     "warning": "months 값 대부분은 일반 작물 수확기 기준이며 영광군 원자료로 확인하지 않음. verified:false 항목은 발표 전 확인 필요.",
     "awarenessScale": "1=무명 / 2=지역 한정 / 3=일부 인지 / 4=널리 알려짐 / 5=전국구",
     "sources": [
@@ -9,29 +9,42 @@
       "영광마켓(ygmarket.net), 2026.08 확인",
       "농업인신문 「고윤자 영광군농업기술센터 소장」 2024.11.22 — 보리·모싯잎산업 특구, 지리적표시 104호 모싯잎송편, 생산업체 130개소 연 300억, 아열대 신소득 작목",
       "영광군민신문 2026.05 — 영광산 동부 자급체계 구축사업",
-      "나무위키 영광군/관광 — 지리적 표시 등록 6종, 굴비 미등록 (원자료 확인 필요)"
-    ]
+      "농림축산식품부 보도자료 붙임 「지리적표시 연도별 등록현황(2024.9 기준)」 — 전체 106건. 2026.08.18 확인",
+      "식품안전정보포털 「수산물 지리적표시 제도 개요 및 현황」 제1~27호 / 국립수산물품질관리원 등록현황 제28호까지 — 굴비 없음. 2026.08.18 확인",
+      "퍼블릭뉴스통신 「영광굴비의 이름을 지키는 일」 2026.08.07 — 굴비 지리적표시 2021년 추진 중단, 2023년 법 개정 후 재추진, 380곳 중 150곳 참여"
+    ],
+    "giNote": "영광군 지리적표시 등록은 5건이다 — 제65호 영광찰쌀보리쌀, 제80호 영광한우, 제90호 영광고추, 제91호 영광고춧가루, 제104호 영광모싯잎송편. 소관은 특허청이 아니라 농림축산식품부·국립농산물품질관리원이다. 굴비는 농산물·수산물 두 목록 어디에도 없다. 확인 기록은 40-ref/지리적표시 확인 기록.md 참조."
   },
   "items": [
     {
       "id": "gulbi",
       "name": "영광굴비",
       "category": "수산가공",
-      "months": [3, 4, 5],
+      "months": [
+        3,
+        4,
+        5
+      ],
       "alwaysAvailable": true,
       "awareness": 5,
       "isAnchor": true,
       "tagline": "칠산 앞바다 참조기를 법성포 해풍에 말린 것",
-      "why": "영광에서 유일하게 전국이 아는 이름. 그런데 지리적 표시에는 등록돼 있지 않다.",
-      "note": "1126년 이자겸이 법성포에서 맛본 뒤 임금에게 진상하며 붙인 이름이라 전한다. 양력 4월 곡우 무렵 잡힌 조기를 최상품으로 친다.",
+      "why": "영광에서 유일하게 전국이 아는 이름. 그런데 지리적 표시에는 등록돼 있지 않다. 영광군이 2021년부터 등록을 추진하고 있지만 아직 되지 않았다.",
+      "note": "1126년 이자겸이 법성포에서 맛본 뒤 임금에게 진상하며 붙인 이름이라 전한다. 양력 4월 곡우 무렵 잡힌 조기를 최상품으로 친다. 등록이 안 돼 있어 영광에서 가공되지 않은 제품도 「영광굴비」로 팔린다.",
       "verified": false,
-      "source": "영광군 특산품 페이지"
+      "source": "영광군 특산품 페이지 / 퍼블릭뉴스통신 2026.08.07",
+      "gi": null
     },
     {
       "id": "boribori-gulbi",
       "name": "보리굴비",
       "category": "수산가공",
-      "months": [5, 6, 7, 8],
+      "months": [
+        5,
+        6,
+        7,
+        8
+      ],
       "alwaysAvailable": true,
       "awareness": 4,
       "isAnchor": false,
@@ -45,35 +58,49 @@
       "id": "mosit-songpyeon",
       "name": "영광모싯잎송편",
       "category": "가공식품",
-      "months": [5, 6, 7, 8, 9],
+      "months": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "alwaysAvailable": true,
       "awareness": 3,
       "isAnchor": false,
-      "tagline": "지리적표시 104호. 생산업체 130개소, 연 매출 300억",
+      "tagline": "지리적표시 제104호. 생산업체 130개소, 연 매출 300억",
       "why": "타 지역에서도 모싯잎떡을 만들면서 '영광 것'이라는 표식이 흐려졌다.",
       "note": "일반 송편보다 2~3배 크다. 고된 농사일 뒤 이웃과 노고를 나누려 크게 빚었다고 전한다. 쌀·모시·동부를 모두 영광에서 생산·가공·유통하는 6차 산업 모델.",
       "verified": true,
-      "source": "농업인신문 2024.11.22, 영광군 특산품 페이지"
+      "source": "농업인신문 2024.11.22, 영광군 특산품 페이지 / 농림축산식품부 지리적표시 등록현황(2024.9)",
+      "gi": 104
     },
     {
       "id": "chalbori",
       "name": "찰보리쌀",
       "category": "곡물",
-      "months": [6],
+      "months": [
+        6
+      ],
       "alwaysAvailable": true,
       "awareness": 2,
       "isAnchor": false,
-      "tagline": "국내 유일 보리산업 특구에서 나는 찰보리",
+      "tagline": "지리적표시 제65호 영광찰쌀보리쌀. 국내 유일 보리산업 특구에서 난다",
       "why": "보리는 '옛날에 먹던 것'으로 취급되어 특산품으로 잘 세어지지 않는다.",
       "note": "노란보리·검정보리·청보리를 함께 낸다. 영광에서 도정까지 마쳐 포장한다.",
       "verified": false,
-      "source": "영광몰 상품 설명"
+      "source": "영광몰 상품 설명 / 농림축산식품부 지리적표시 등록현황(2024.9)",
+      "gi": 65
     },
     {
       "id": "saessak-bori",
       "name": "새싹보리분말",
       "category": "가공식품",
-      "months": [3, 4, 5],
+      "months": [
+        3,
+        4,
+        5
+      ],
       "alwaysAvailable": true,
       "awareness": 1,
       "isAnchor": false,
@@ -115,7 +142,14 @@
       "id": "cheonilyeom",
       "name": "천일염",
       "category": "수산",
-      "months": [4, 5, 6, 7, 8, 9],
+      "months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "alwaysAvailable": true,
       "awareness": 3,
       "isAnchor": false,
@@ -129,7 +163,9 @@
       "id": "sindongjin",
       "name": "신동진쌀",
       "category": "곡물",
-      "months": [10],
+      "months": [
+        10
+      ],
       "alwaysAvailable": true,
       "awareness": 1,
       "isAnchor": false,
@@ -143,21 +179,28 @@
       "id": "taeyangcho",
       "name": "태양초 고춧가루",
       "category": "채소·양념",
-      "months": [8, 9],
+      "months": [
+        8,
+        9
+      ],
       "alwaysAvailable": true,
       "awareness": 2,
       "isAnchor": false,
-      "tagline": "지리적 표시에 등록된 영광 고추",
+      "tagline": "지리적표시 제90·91호로 등록된 영광 고추와 고춧가루",
       "why": "고추는 어디서나 나는 것으로 여겨져 산지가 기억되지 않는다.",
       "note": "고추·고춧가루 모두 지리적 표시 등록 품목이다.",
       "verified": false,
-      "source": "나무위키 영광군/관광, 영광몰"
+      "source": "나무위키 영광군/관광, 영광몰 / 농림축산식품부 지리적표시 등록현황(2024.9)",
+      "gi": 91
     },
     {
       "id": "dongbu",
       "name": "동부",
       "category": "곡물",
-      "months": [9, 10],
+      "months": [
+        9,
+        10
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -171,7 +214,9 @@
       "id": "saeujeot",
       "name": "새우젓",
       "category": "수산가공",
-      "months": [6],
+      "months": [
+        6
+      ],
       "alwaysAvailable": true,
       "awareness": 2,
       "isAnchor": false,
@@ -185,7 +230,11 @@
       "id": "minmul-jangeo",
       "name": "민물장어",
       "category": "수산",
-      "months": [6, 7, 8],
+      "months": [
+        6,
+        7,
+        8
+      ],
       "alwaysAvailable": true,
       "awareness": 1,
       "isAnchor": false,
@@ -199,7 +248,11 @@
       "id": "apple-mango",
       "name": "애플망고",
       "category": "과일",
-      "months": [6, 7, 8],
+      "months": [
+        6,
+        7,
+        8
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -213,7 +266,11 @@
       "id": "shine-muscat",
       "name": "샤인머스켓",
       "category": "과일",
-      "months": [8, 9, 10],
+      "months": [
+        8,
+        9,
+        10
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -227,7 +284,11 @@
       "id": "siseol-boksunga",
       "name": "시설복숭아",
       "category": "과일",
-      "months": [5, 6, 7],
+      "months": [
+        5,
+        6,
+        7
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -241,7 +302,11 @@
       "id": "asparagus",
       "name": "아스파라거스",
       "category": "채소",
-      "months": [4, 5, 6],
+      "months": [
+        4,
+        5,
+        6
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -255,7 +320,10 @@
       "id": "aronia",
       "name": "아로니아",
       "category": "과일",
-      "months": [8, 9],
+      "months": [
+        8,
+        9
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -287,17 +355,22 @@
       "alwaysAvailable": true,
       "awareness": 2,
       "isAnchor": false,
-      "tagline": "지리적 표시에 등록된 영광 한우",
+      "tagline": "지리적표시 제80호로 등록된 영광 한우",
       "why": "한우는 등급으로 팔려 산지가 지워진다.",
       "note": "지리적 표시 등록 6종 중 하나.",
       "verified": false,
-      "source": "나무위키 영광군/관광"
+      "source": "나무위키 영광군/관광 / 농림축산식품부 지리적표시 등록현황(2024.9)",
+      "gi": 80
     },
     {
       "id": "jjokpa",
       "name": "쪽파",
       "category": "채소",
-      "months": [10, 11, 12],
+      "months": [
+        10,
+        11,
+        12
+      ],
       "alwaysAvailable": false,
       "awareness": 1,
       "isAnchor": false,
@@ -311,7 +384,13 @@
       "id": "mositip",
       "name": "모싯잎",
       "category": "채소",
-      "months": [5, 6, 7, 8, 9],
+      "months": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "alwaysAvailable": false,
       "awareness": 2,
       "isAnchor": false,

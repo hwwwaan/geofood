@@ -61,6 +61,10 @@ function dots(n) {
   return `<span class="dots" title="인지도 ${esc(AWARENESS_TEXT[k])}" aria-label="인지도 ${esc(AWARENESS_TEXT[k])}">${"<b>●</b>".repeat(k)}${"○".repeat(5 - k)}</span>`;
 }
 
+/** 지리적 표시 등록 품목에만 붙는 표식. 굴비에 없다는 것이 눈에 보여야 한다. */
+const giBadge = (item) =>
+  item.gi ? ` <span class="badge badge-gi">지리적표시 ${item.gi}호</span>` : "";
+
 const checkingBadge = (item) =>
   item.verified ? "" : ` <span class="badge" title="수확기를 영광군 원자료로 아직 확인하지 못했습니다">확인 중</span>`;
 
@@ -212,7 +216,7 @@ function viewResult(params) {
       <p class="headline">${esc(buildHeadline(d, item, fallback))}</p>
 
       <section class="item-card">
-        <p class="item-name">${esc(item.name)}${checkingBadge(item)}</p>
+        <p class="item-name">${esc(item.name)}${giBadge(item)}${checkingBadge(item)}</p>
         <p class="item-meta">${esc(item.category)} · ${esc(seasonLine(item))}</p>
         ${tagline ? `<p class="item-tagline">${esc(tagline)}</p>` : ""}
       </section>
@@ -299,15 +303,17 @@ function viewMap() {
       <section id="mapbody"></section>
 
       <section class="claim">
-        영광에는 지리적 표시로 등록된 먹거리가 여섯 가지 있습니다.<br>
-        찰쌀, 보리쌀, 한우, 고추, 고춧가루, 모싯잎송편.<br>
+        영광에는 지리적 표시로 등록된 먹거리가 다섯 가지 있습니다.<br>
+        찰쌀보리쌀, 한우, 고추, 고춧가루, 모싯잎송편.<br>
         <strong>굴비는 그 목록에 없습니다.</strong>
-        <span class="kicker">우리가 아는 하나가, 영광이 가진 전부는 아닙니다.</span>
+        <span class="kicker">영광군은 2021년부터 굴비를 등록하려 하고 있습니다. 아직 안 됐습니다.</span>
       </section>
 
       <p class="foot-note">
-        지리적 표시 등록 현황은 특허청 원자료로 확인하는 중입니다.
-        「확인 중」 배지가 붙은 품목은 수확기를 영광군 자료로 아직 맞춰보지 못했습니다.
+        농림축산식품부 등록현황(2024년 9월, 전체 106건)과 수산물 지리적표시 제1호~제28호를
+        전부 확인했습니다. 굴비는 어느 쪽에도 없습니다.
+        영광에서 굴비를 다루는 업체는 약 380곳인데 등록에 참여 의사를 밝힌 곳은 약 150곳입니다.
+        <br>「확인 중」 배지가 붙은 품목은 수확기를 영광군 자료로 아직 맞춰보지 못했습니다.
       </p>
 
       <div class="stack">
@@ -343,7 +349,7 @@ function listHTML(rest, anchors) {
         <p class="row-name">${esc(item.name)}${checkingBadge(item)}</p>
         <p class="row-tagline">${esc(item.tagline)}</p>
         <p class="row-sub">
-          <span>${esc(item.category)}</span>
+          <span>${esc(item.category)}</span>${giBadge(item)}
           <span>${esc(seasonLine(item))}</span>
           <span>${dots(item.awareness)}</span>
         </p>
