@@ -1,0 +1,2163 @@
+{
+ "meta": {
+  "updated": "2026-08-18",
+  "counts": {
+   "농산물": 106,
+   "수산물": 28,
+   "합계": 134
+  },
+  "monthsNote": "수확기는 작물 일반 기준이다. 등록 지역의 실제 수확기를 확인한 값이 아니다. 수확기는 지역이 아니라 작물이 정하므로 이 정도는 성립하지만, 화면에 그대로 밝힌다.",
+  "awarenessNote": "인지도는 넣지 않았다. 134개를 추정으로 매기면 근거가 사라진다. 대신 등록연도만 쓴다. 제도 초기에 등록된 것일수록 이미 유명했던 품목이다.",
+  "gap": "임산물 지리적표시(산림청 소관)는 이번 판에 빠져 있다. 수산물은 국립수산물품질관리원 기준 현재 유효 등록이 24건이라 제1~17호 중 일부는 말소됐을 수 있다. 확인 필요.",
+  "sources": [
+   "농림축산식품부 「지리적표시 연도별 등록현황(2024.9 기준)」 106건",
+   "식품안전정보포털 수산물 지리적표시 제1~27호 / 국립수산물품질관리원 제28호",
+   "확인 기록: 40-ref/지리적표시 확인 기록.md (2026-08-18)"
+  ]
+ },
+ "items": [
+  {
+   "id": "a-보성녹차",
+   "name": "보성녹차",
+   "region": "보성",
+   "sido": "전남",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2002,
+   "no": null
+  },
+  {
+   "id": "a-하동녹차",
+   "name": "하동녹차",
+   "region": "하동",
+   "sido": "경남",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2003,
+   "no": null
+  },
+  {
+   "id": "a-고창복분자주",
+   "name": "고창복분자주",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "복분자주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2004,
+   "no": null
+  },
+  {
+   "id": "a-영양고춧가루",
+   "name": "영양고춧가루",
+   "region": "영양",
+   "sido": "경북",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-의성마늘",
+   "name": "의성마늘",
+   "region": "의성",
+   "sido": "경북",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-괴산고추",
+   "name": "괴산고추",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-순창전통고추장",
+   "name": "순창전통고추장",
+   "region": "순창",
+   "sido": "전북",
+   "goods": "전통고추장",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-괴산고춧가루",
+   "name": "괴산고춧가루",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-성주참외",
+   "name": "성주참외",
+   "region": "성주",
+   "sido": "경북",
+   "goods": "참외",
+   "category": "과일",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-해남겨울배추",
+   "name": "해남겨울배추",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "겨울배추",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-이천쌀",
+   "name": "이천쌀",
+   "region": "이천",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-철원쌀",
+   "name": "철원쌀",
+   "region": "철원",
+   "sido": "강원",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2005,
+   "no": null
+  },
+  {
+   "id": "a-고흥유자",
+   "name": "고흥유자",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "유자",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-홍천찰옥수수",
+   "name": "홍천찰옥수수",
+   "region": "홍천",
+   "sido": "강원",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-강화약쑥",
+   "name": "강화약쑥",
+   "region": "강화",
+   "sido": "인천",
+   "goods": "약쑥",
+   "category": "약용",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-횡성한우고기",
+   "name": "횡성한우고기",
+   "region": "횡성",
+   "sido": "강원",
+   "goods": "한우고기",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-제주돼지고기",
+   "name": "제주돼지고기",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "돼지고기",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려홍삼",
+   "name": "고려홍삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "홍삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려백삼",
+   "name": "고려백삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "백삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-고려태극삼",
+   "name": "고려태극삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "태극삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-충주사과",
+   "name": "충주사과",
+   "region": "충주",
+   "sido": "충북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-밀양얼음골사과",
+   "name": "밀양얼음골사과",
+   "region": "밀양얼음골",
+   "sido": "경남",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-한산모시",
+   "name": "한산모시",
+   "region": "한산",
+   "sido": "충남",
+   "goods": "모시",
+   "category": "섬유·기타",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2006,
+   "no": null
+  },
+  {
+   "id": "a-진도홍주",
+   "name": "진도홍주",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "홍주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-정선황기",
+   "name": "정선황기",
+   "region": "정선",
+   "sido": "강원",
+   "goods": "황기",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-남해마늘",
+   "name": "남해마늘",
+   "region": "남해",
+   "sido": "경남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-단양마늘",
+   "name": "단양마늘",
+   "region": "단양",
+   "sido": "충북",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-창녕양파",
+   "name": "창녕양파",
+   "region": "창녕",
+   "sido": "경남",
+   "goods": "양파",
+   "category": "채소",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-무안양파",
+   "name": "무안양파",
+   "region": "무안",
+   "sido": "전남",
+   "goods": "양파",
+   "category": "채소",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-여주쌀",
+   "name": "여주쌀",
+   "region": "여주",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-고창복분자",
+   "name": "고창복분자",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "복분자",
+   "category": "과일",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-광양매실",
+   "name": "광양매실",
+   "region": "광양",
+   "sido": "전남",
+   "goods": "매실",
+   "category": "과일",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-정선찰옥수수",
+   "name": "정선찰옥수수",
+   "region": "정선",
+   "sido": "강원",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-진부당귀",
+   "name": "진부당귀",
+   "region": "진부",
+   "sido": "강원",
+   "goods": "당귀",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-고려수삼",
+   "name": "고려수삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "수삼",
+   "category": "채소",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-청양고추",
+   "name": "청양고추",
+   "region": "청양",
+   "sido": "충남",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2007,
+   "no": null
+  },
+  {
+   "id": "a-해남고구마",
+   "name": "해남고구마",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "고구마",
+   "category": "채소",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영암무화과",
+   "name": "영암무화과",
+   "region": "영암",
+   "sido": "전남",
+   "goods": "무화과",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-함안수박",
+   "name": "함안수박",
+   "region": "함안",
+   "sido": "경남",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-고려인삼제품",
+   "name": "고려인삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "인삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-고려홍삼제품",
+   "name": "고려홍삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "홍삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-군산찰쌀보리쌀",
+   "name": "군산찰쌀보리쌀",
+   "region": "군산",
+   "sido": "전북",
+   "goods": "찰쌀보리쌀",
+   "category": "곡물",
+   "months": [
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-제주녹차",
+   "name": "제주녹차",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "녹차",
+   "category": "차",
+   "months": [
+    4,
+    5
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-홍천한우",
+   "name": "홍천한우",
+   "region": "홍천",
+   "sido": "강원",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영월고추",
+   "name": "영월고추",
+   "region": "영월",
+   "sido": "강원",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2008,
+   "no": null
+  },
+  {
+   "id": "a-영천포도",
+   "name": "영천포도",
+   "region": "영천",
+   "sido": "경북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-무주사과",
+   "name": "무주사과",
+   "region": "무주",
+   "sido": "전북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-함평한우",
+   "name": "함평한우",
+   "region": "함평",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-삼척마늘",
+   "name": "삼척마늘",
+   "region": "삼척",
+   "sido": "강원",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-김천자두",
+   "name": "김천자두",
+   "region": "김천",
+   "sido": "경북",
+   "goods": "자두",
+   "category": "과일",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-영동포도",
+   "name": "영동포도",
+   "region": "영동",
+   "sido": "충북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2009,
+   "no": null
+  },
+  {
+   "id": "a-진도대파",
+   "name": "진도대파",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "대파",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-김천포도",
+   "name": "김천포도",
+   "region": "김천",
+   "sido": "경북",
+   "goods": "포도",
+   "category": "과일",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-원주치악산복숭아",
+   "name": "원주치악산복숭아",
+   "region": "원주치악산",
+   "sido": "강원",
+   "goods": "복숭아",
+   "category": "과일",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-영월고춧가루",
+   "name": "영월고춧가루",
+   "region": "영월",
+   "sido": "강원",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-예산사과",
+   "name": "예산사과",
+   "region": "예산",
+   "sido": "충남",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-영광찰쌀보리쌀",
+   "name": "영광찰쌀보리쌀",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "찰쌀보리쌀",
+   "category": "곡물",
+   "months": [
+    6
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-여수돌산갓",
+   "name": "여수돌산갓",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "돌산갓",
+   "category": "채소",
+   "months": [
+    10,
+    11,
+    12
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-여수돌산갓김치",
+   "name": "여수돌산갓김치",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "돌산갓김치",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-청도한재미나리",
+   "name": "청도한재미나리",
+   "region": "청도한재",
+   "sido": "경북",
+   "goods": "미나리",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-담양딸기",
+   "name": "담양딸기",
+   "region": "담양",
+   "sido": "전남",
+   "goods": "딸기",
+   "category": "과일",
+   "months": [
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-보성웅치올벼쌀",
+   "name": "보성웅치올벼쌀",
+   "region": "보성웅치",
+   "sido": "전남",
+   "goods": "올벼쌀",
+   "category": "곡물",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-사천풋마늘",
+   "name": "사천풋마늘",
+   "region": "사천",
+   "sido": "경남",
+   "goods": "풋마늘",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2010,
+   "no": null
+  },
+  {
+   "id": "a-고령수박",
+   "name": "고령수박",
+   "region": "고령",
+   "sido": "경북",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-의령망개떡",
+   "name": "의령망개떡",
+   "region": "의령",
+   "sido": "경남",
+   "goods": "망개떡",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-금산깻잎",
+   "name": "금산깻잎",
+   "region": "금산",
+   "sido": "충남",
+   "goods": "깻잎",
+   "category": "채소",
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-괴산찰옥수수",
+   "name": "괴산찰옥수수",
+   "region": "괴산",
+   "sido": "충북",
+   "goods": "찰옥수수",
+   "category": "곡물",
+   "months": [
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-인제콩",
+   "name": "인제콩",
+   "region": "인제",
+   "sido": "강원",
+   "goods": "콩",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-김포쌀",
+   "name": "김포쌀",
+   "region": "김포",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-영광한우",
+   "name": "영광한우",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2011,
+   "no": null
+  },
+  {
+   "id": "a-나주배",
+   "name": "나주배",
+   "region": "나주",
+   "sido": "전남",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-창녕마늘",
+   "name": "창녕마늘",
+   "region": "창녕",
+   "sido": "경남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-고흥한우",
+   "name": "고흥한우",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-진도검정쌀",
+   "name": "진도검정쌀",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "검정쌀",
+   "category": "곡물",
+   "months": [
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-거문도쑥",
+   "name": "거문도쑥",
+   "region": "거문도",
+   "sido": "전남",
+   "goods": "쑥",
+   "category": "채소",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-부산대저토마토",
+   "name": "부산대저토마토",
+   "region": "부산대저",
+   "sido": "부산",
+   "goods": "토마토",
+   "category": "채소",
+   "months": [
+    4,
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2012,
+   "no": null
+  },
+  {
+   "id": "a-안성배",
+   "name": "안성배",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-진영단감",
+   "name": "진영단감",
+   "region": "진영",
+   "sido": "경남",
+   "goods": "단감",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-서산팔봉산감자",
+   "name": "서산팔봉산감자",
+   "region": "서산팔봉산",
+   "sido": "충남",
+   "goods": "감자",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-영광고추",
+   "name": "영광고추",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "고추",
+   "category": "채소",
+   "months": [
+    8,
+    9
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-영광고춧가루",
+   "name": "영광고춧가루",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "고춧가루",
+   "category": "양념",
+   "months": [
+    8,
+    9,
+    10
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-천안배",
+   "name": "천안배",
+   "region": "천안",
+   "sido": "충남",
+   "goods": "배",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-고령감자",
+   "name": "고령감자",
+   "region": "고령",
+   "sido": "경북",
+   "goods": "감자",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2013,
+   "no": null
+  },
+  {
+   "id": "a-고흥석류",
+   "name": "고흥석류",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "석류",
+   "category": "과일",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-진도울금",
+   "name": "진도울금",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "울금",
+   "category": "약용",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-포항시금치",
+   "name": "포항시금치",
+   "region": "포항",
+   "sido": "경북",
+   "goods": "시금치",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2014,
+   "no": null
+  },
+  {
+   "id": "a-군산쌀",
+   "name": "군산쌀",
+   "region": "군산",
+   "sido": "전북",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-안성쌀",
+   "name": "안성쌀",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "쌀",
+   "category": "곡물",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-고흥마늘",
+   "name": "고흥마늘",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "마늘",
+   "category": "채소",
+   "months": [
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-제주한라봉",
+   "name": "제주한라봉",
+   "region": "제주",
+   "sido": "제주",
+   "goods": "한라봉",
+   "category": "과일",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2015,
+   "no": null
+  },
+  {
+   "id": "a-안성한우",
+   "name": "안성한우",
+   "region": "안성",
+   "sido": "경기",
+   "goods": "한우",
+   "category": "축산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-고려흑삼",
+   "name": "고려흑삼",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "흑삼",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-고려흑삼제품",
+   "name": "고려흑삼제품",
+   "region": "고려",
+   "sido": "전국",
+   "goods": "흑삼제품",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2016,
+   "no": null
+  },
+  {
+   "id": "a-영광모싯잎송편",
+   "name": "영광모싯잎송편",
+   "region": "영광",
+   "sido": "전남",
+   "goods": "모싯잎송편",
+   "category": "가공식품",
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2017,
+   "no": null
+  },
+  {
+   "id": "a-기장쪽파",
+   "name": "기장쪽파",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "쪽파",
+   "category": "채소",
+   "months": [
+    10,
+    11,
+    12
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2018,
+   "no": null
+  },
+  {
+   "id": "a-태안달래",
+   "name": "태안달래",
+   "region": "태안",
+   "sido": "충남",
+   "goods": "달래",
+   "category": "채소",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2018,
+   "no": null
+  },
+  {
+   "id": "a-부안오디",
+   "name": "부안오디",
+   "region": "부안",
+   "sido": "전북",
+   "goods": "오디",
+   "category": "과일",
+   "months": [
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2019,
+   "no": null
+  },
+  {
+   "id": "a-곡성토란",
+   "name": "곡성토란",
+   "region": "곡성",
+   "sido": "전남",
+   "goods": "토란",
+   "category": "채소",
+   "months": [
+    9,
+    10
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2019,
+   "no": null
+  },
+  {
+   "id": "a-양구시래기",
+   "name": "양구시래기",
+   "region": "양구",
+   "sido": "강원",
+   "goods": "시래기",
+   "category": "채소",
+   "months": [
+    11,
+    12,
+    1
+   ],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2020,
+   "no": null
+  },
+  {
+   "id": "a-서천한산소곡주",
+   "name": "서천한산소곡주",
+   "region": "서천한산",
+   "sido": "충남",
+   "goods": "소곡주",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2021,
+   "no": null
+  },
+  {
+   "id": "a-보성키위",
+   "name": "보성키위",
+   "region": "보성",
+   "sido": "전남",
+   "goods": "키위",
+   "category": "과일",
+   "months": [
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2022,
+   "no": null
+  },
+  {
+   "id": "a-곡성멜론",
+   "name": "곡성멜론",
+   "region": "곡성",
+   "sido": "전남",
+   "goods": "멜론",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2022,
+   "no": null
+  },
+  {
+   "id": "a-청송사과",
+   "name": "청송사과",
+   "region": "청송",
+   "sido": "경북",
+   "goods": "사과",
+   "category": "과일",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2023,
+   "no": null
+  },
+  {
+   "id": "a-예천참기름",
+   "name": "예천참기름",
+   "region": "예천",
+   "sido": "경북",
+   "goods": "참기름",
+   "category": "가공식품",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "a-일산열무",
+   "name": "일산열무",
+   "region": "일산",
+   "sido": "경기",
+   "goods": "열무",
+   "category": "채소",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "a-고창수박",
+   "name": "고창수박",
+   "region": "고창",
+   "sido": "전북",
+   "goods": "수박",
+   "category": "과일",
+   "months": [
+    6,
+    7,
+    8
+   ],
+   "alwaysAvailable": false,
+   "kind": "농산물",
+   "year": 2024,
+   "no": null
+  },
+  {
+   "id": "s-1",
+   "name": "보성벌교꼬막",
+   "region": "보성벌교",
+   "sido": "전남",
+   "goods": "꼬막",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 1
+  },
+  {
+   "id": "s-2",
+   "name": "완도전복",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 2
+  },
+  {
+   "id": "s-3",
+   "name": "완도미역",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 3
+  },
+  {
+   "id": "s-4",
+   "name": "완도다시마",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 4
+  },
+  {
+   "id": "s-5",
+   "name": "기장미역",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 5
+  },
+  {
+   "id": "s-6",
+   "name": "기장다시마",
+   "region": "기장",
+   "sido": "부산",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 6
+  },
+  {
+   "id": "s-7",
+   "name": "장흥키조개",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "키조개",
+   "category": "수산",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 7
+  },
+  {
+   "id": "s-8",
+   "name": "완도김",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 8
+  },
+  {
+   "id": "s-9",
+   "name": "완도넙치",
+   "region": "완도",
+   "sido": "전남",
+   "goods": "넙치",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 9
+  },
+  {
+   "id": "s-10",
+   "name": "장흥김",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 10
+  },
+  {
+   "id": "s-11",
+   "name": "장흥매생이",
+   "region": "장흥",
+   "sido": "전남",
+   "goods": "매생이",
+   "category": "수산",
+   "months": [
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 11
+  },
+  {
+   "id": "s-12",
+   "name": "여수굴",
+   "region": "여수",
+   "sido": "전남",
+   "goods": "굴",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 12
+  },
+  {
+   "id": "s-13",
+   "name": "남원미꾸라지",
+   "region": "남원",
+   "sido": "전북",
+   "goods": "미꾸라지",
+   "category": "수산",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 13
+  },
+  {
+   "id": "s-14",
+   "name": "고흥미역",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "미역",
+   "category": "수산",
+   "months": [
+    2,
+    3,
+    4
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 14
+  },
+  {
+   "id": "s-15",
+   "name": "고흥다시마",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "다시마",
+   "category": "수산",
+   "months": [
+    5,
+    6,
+    7
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 15
+  },
+  {
+   "id": "s-16",
+   "name": "진동미더덕",
+   "region": "진동",
+   "sido": "경남",
+   "goods": "미더덕",
+   "category": "수산",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 16
+  },
+  {
+   "id": "s-17",
+   "name": "신안김",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 17
+  },
+  {
+   "id": "s-18",
+   "name": "해남김",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 18
+  },
+  {
+   "id": "s-19",
+   "name": "해남전복",
+   "region": "해남",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 19
+  },
+  {
+   "id": "s-20",
+   "name": "여자만새고막",
+   "region": "여자만",
+   "sido": "전남",
+   "goods": "새고막",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 20
+  },
+  {
+   "id": "s-21",
+   "name": "고흥김",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 21
+  },
+  {
+   "id": "s-22",
+   "name": "고흥굴",
+   "region": "고흥",
+   "sido": "전남",
+   "goods": "굴",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 22
+  },
+  {
+   "id": "s-23",
+   "name": "평창송어",
+   "region": "평창",
+   "sido": "강원",
+   "goods": "송어",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 23
+  },
+  {
+   "id": "s-24",
+   "name": "진도전복",
+   "region": "진도",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 24
+  },
+  {
+   "id": "s-25",
+   "name": "순천만가리맛조개",
+   "region": "순천만",
+   "sido": "전남",
+   "goods": "가리맛조개",
+   "category": "수산",
+   "months": [
+    4,
+    5,
+    6
+   ],
+   "alwaysAvailable": false,
+   "kind": "수산물",
+   "year": null,
+   "no": 25
+  },
+  {
+   "id": "s-26",
+   "name": "신안전복",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "전복",
+   "category": "수산",
+   "months": [],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 26
+  },
+  {
+   "id": "s-27",
+   "name": "신안건우럭",
+   "region": "신안",
+   "sido": "전남",
+   "goods": "건우럭",
+   "category": "수산가공",
+   "months": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 27
+  },
+  {
+   "id": "s-28",
+   "name": "무안돌김",
+   "region": "무안",
+   "sido": "전남",
+   "goods": "돌김",
+   "category": "수산",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "alwaysAvailable": true,
+   "kind": "수산물",
+   "year": null,
+   "no": 28
+  }
+ ]
+}
