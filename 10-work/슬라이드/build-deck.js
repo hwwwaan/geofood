@@ -1,5 +1,5 @@
 /**
- * 최종 발표 슬라이드 생성기.  실행:  node 10-work/slides/build-deck.js
+ * 최종 발표 슬라이드 생성기.  실행:  node 10-work/슬라이드/build-deck.js
  * 구성안은 30-out/2. 최종 발표자료 구성안.md 다. 내용을 바꿀 때는 그쪽을 먼저 고친다.
  */
 const pptx = require("pptxgenjs");

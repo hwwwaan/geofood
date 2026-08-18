@@ -19,14 +19,14 @@
 | 파일 | 무엇 |
 |---|---|
 | `index.html` | **생성물입니다. 직접 고치지 마세요.** 61KB, 이 한 장이 전부입니다 |
-| `10-work/전국판/_template.html` | 화면을 고칠 때 여기를 고칩니다 |
-| `10-work/전국판/build-data.py` | 등록현황 → `items-national.json` |
-| `10-work/전국판/build.py` | 위 둘을 합쳐 `index.html` 을 다시 씁니다 |
+| `10-work/사이트/_template.html` | 화면을 고칠 때 여기를 고칩니다 |
+| `10-work/사이트/build-data.py` | 등록현황 → `items-national.json` |
+| `10-work/사이트/build.py` | 위 둘을 합쳐 `index.html` 을 다시 씁니다 |
 | `yeonggwang/` | **영광판.** 지우지 않고 남겨뒀습니다 |
 | `00-brief/` `10-work/` `20-assets/` `30-out/` `40-ref/` | 과제·작업·재료·제출본·참고 |
 
 ```bash
-python3 10-work/전국판/build.py     # 데이터·화면을 고친 뒤 다시 만들기
+python3 10-work/사이트/build.py     # 데이터·화면을 고친 뒤 다시 만들기
 node yeonggwang/sim.js              # 영광판 배정 로직 검증
 ```
 

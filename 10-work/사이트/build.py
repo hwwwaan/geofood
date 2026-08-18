@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-전국판 빌드.  실행:  python3 10-work/전국판/build.py
+사이트 빌드.  실행:  python3 10-work/사이트/build.py
 
   build-data.py 로 items-national.json 을 만들고,
   _template.html 에 그 데이터를 넣어 저장소 루트의 index.html 을 새로 쓴다.
@@ -19,8 +19,5 @@ tpl = (HERE / "_template.html").read_text(encoding="utf-8")
 data = (HERE / "items-national.json").read_text(encoding="utf-8").strip()
 out = ROOT / "index.html"
 out.write_text(tpl.replace("/*__DATA__*/", data), encoding="utf-8")
-
-# 팀이 파일 하나만 열어보고 싶을 때를 위해 사본도 남긴다
-(HERE / "전국판 MVP.html").write_text(out.read_text(encoding="utf-8"), encoding="utf-8")
 
 print(f"{out} · {out.stat().st_size/1024:.0f}KB")
